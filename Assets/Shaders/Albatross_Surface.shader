@@ -11,6 +11,7 @@
         _LaserUpDirection("Laser Up Direction", Vector) = (0,0,0,0)
         _FirstHitInfo("First Hit Info", Vector) = (0,0,0,0)
         _CutOut("Cutout", Range(0,1)) = 0.5
+        _IsLineRenderer("Is Line Renderer", Range(0,1)) = 0
     }
     SubShader
     {
@@ -20,9 +21,9 @@
 
         CGPROGRAM
         #include "UnityCG.cginc"
+        // #pragma shader_feature
         #pragma surface surf Standard fullforwardshadows alphatest:_CutOut
         #pragma target 5.0
-        #pragma only_renderers d3d11
 
         // StructuredBuffer<float4> hitInfoBuffer;
         sampler2D _MainTex;
@@ -50,6 +51,7 @@
         float4 _LaserUpDirection;
         float4 _FirstHitInfo;
         float4 _HitInfos[16];
+        int _IsLineRenderer;
 
         UNITY_INSTANCING_BUFFER_START(Props)
         UNITY_INSTANCING_BUFFER_END(Props)
@@ -58,9 +60,11 @@
         {
             float lengthA, lengthB, lengthP;
             float widthP = dot(wPos.xyz - _BottomLimit.xyz, _LaserUpDirection.xyz);
-            int areaIndex = widthP / laserWidth * numOfRayCasts;
+            float regionRatio = widthP / laserWidth * numOfRayCasts;
+            int areaIndex = (int) regionRatio;
+            int upOrDown = (int)((regionRatio-areaIndex)/0.5);
+
             lengthA = dot(_HitInfos[areaIndex].xyz - _BottomLimit.xyz, _LaserForwardDirection.xyz);
-            lengthB = dot(_HitInfos[areaIndex+1].xyz - _BottomLimit.xyz, normalize(_LaserForwardDirection.xyz));
             lengthP = dot(wPos.xyz - _BottomLimit.xyz, _LaserForwardDirection.xyz);
             if(_HitInfos[areaIndex].w == 1 && lengthP > lengthA)// || lengthP > lengthB)
             {
@@ -74,30 +78,37 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            fixed4 c = _Color;//tex2D (_MainTex, IN.uv_MainTex) * 
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
             // IN.wpos = mul(unity_ObjectToWorld, IN.vertex).xyz;
             // o.Albedo = c.rgb;
-            if(isInHollowArea(IN.worldPos))
+            if(_IsLineRenderer==1)
             {
-                // o.Alpha = 0;
-                o.Albedo = fixed3(0,0,0);
-                o.Alpha = 0;
+                if(isInHollowArea(IN.worldPos+(_LaserUpDirection*laserWidth/2)))
+                {
+                    // o.Alpha = 0;
+                    o.Albedo = fixed3(0,0,0);
+                    o.Alpha = 0;
+                }
+                else
+                {
+                    o.Albedo = c.rgb;
+                    o.Alpha = c.a;
+                }
             }
             else
             {
-                o.Albedo = c.rgb;
-                o.Alpha = c.a;
+                if(isInHollowArea(IN.worldPos))
+                {
+                    // o.Alpha = 0;
+                    o.Albedo = fixed3(0,0,0);
+                    o.Alpha = 0;
+                }
+                else
+                {
+                    o.Albedo = c.rgb;
+                    o.Alpha = c.a;
+                }
             }
-            // o.Metallic = _Metallic;
-            // o.Smoothness = _Glossiness;
-        //     // Albedo comes from a texture tinted by color
-        //     fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-        //     o.Albedo = c.rgb;
-        //     // Metallic and smoothness come from slider variables
-        //     o.Metallic = _Metallic;
-        //     o.Smoothness = _Glossiness;
-        //     o.Alpha = c.a;
-        //
         }
         ENDCG
     }

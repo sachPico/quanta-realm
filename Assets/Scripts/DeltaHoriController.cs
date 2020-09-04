@@ -10,6 +10,8 @@ public class DeltaHoriController : MonoBehaviour
     public Playfield _playfield;
     
     public Vector3 newPos;
+
+    bool isShooting;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -23,5 +25,20 @@ public class DeltaHoriController : MonoBehaviour
         // {
         //     _playfield.mainCamPivot.transform.rotation = Quaternion.AngleAxis(camRotateRange * transform.localPosition.y / _playfield.rightUpperBorder.y, _playfield.transform.right);
         // }
+    }
+
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Space) && isShooting == false)
+        {
+            gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_shoot");
+            isShooting = true;
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            Debug.Log("ASW");
+            isShooting = false;
+            gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_release");
+        }
     }
 }
