@@ -288,8 +288,8 @@ MonoBehaviour:
   interpolant: 0
   qInterpolant: 0
   playerGameObjectName: DummyObject
-  _playfield: {fileID: 303195040}
-  _dhc: {fileID: 1693757714}
+  _playfield: {fileID: 0}
+  _dhc: {fileID: 0}
 --- !u!114 &303195043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1094,6 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1331,13 +1330,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602421159}
-<<<<<<< HEAD
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 25.02, y: 12.1, z: 84}
-=======
   m_LocalRotation: {x: 0.07349893, y: -0.5266568, z: 0.8387661, w: -0.11705582}
   m_LocalPosition: {x: 60.1, y: 13.6, z: 76.8}
->>>>>>> fb9e56b4841fa7f0b8863166a6ea8b01ed5dc8cc
   m_LocalScale: {x: 21.96, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1360,24 +1354,6 @@ MonoBehaviour:
   laserWidth: 10
   _mat: {fileID: 2100000, guid: 36fb922aba998374898abed4ab23ff51, type: 2}
   hitInfos:
-<<<<<<< HEAD
-  - {x: 26.969406, y: 7.4125214, z: 84, w: 1}
-  - {x: 26.969406, y: 8.037514, z: 84, w: 1}
-  - {x: 26.969406, y: 8.662514, z: 84, w: 1}
-  - {x: 26.969406, y: 9.287514, z: 84, w: 1}
-  - {x: 26.969406, y: 9.912514, z: 84, w: 1}
-  - {x: 26.969406, y: 10.537514, z: 84, w: 1}
-  - {x: 26.969406, y: 11.162529, z: 84, w: 1}
-  - {x: 26.969406, y: 11.787506, z: 84, w: 1}
-  - {x: 26.969406, y: 12.412521, z: 84, w: 1}
-  - {x: 26.969406, y: 13.037529, z: 84, w: 1}
-  - {x: 57.525364, y: 13.662521, z: 83.99999, w: 1}
-  - {x: 60.04327, y: 14.287521, z: 83.99999, w: 1}
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-=======
   - {x: -114.27237, y: -31.646873, z: 74.763565, w: 1}
   - {x: -113.10544, y: -31.900002, z: 75.03507, w: 1}
   - {x: -111.049286, y: -31.900002, z: 75.30661, w: 1}
@@ -1394,7 +1370,6 @@ MonoBehaviour:
   - {x: 62.847694, y: 11.16304, z: 78.29346, w: 1}
   - {x: 62.98413, y: 10.616589, z: 78.564995, w: 1}
   - {x: 63.120567, y: 10.070141, z: 78.83653, w: 1}
->>>>>>> fb9e56b4841fa7f0b8863166a6ea8b01ed5dc8cc
 --- !u!1 &1616252191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  camRotateRange: 2.5
+  camRotateRange: 5
   horiMove: {x: 0, y: 0, z: 0}
   vertMove: {x: 0, y: 0, z: 0}
   _playfield: {fileID: 303195040}
