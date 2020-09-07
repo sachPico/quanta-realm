@@ -11,7 +11,7 @@ public class DeltaHoriController : MonoBehaviour
     
     public Vector3 newPos;
 
-    bool isShooting;
+    public bool isShooting = false;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -29,14 +29,14 @@ public class DeltaHoriController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space) && isShooting == false)
+        if(Input.GetKeyDown(KeyCode.Space) && transform.GetChild(1).GetComponent<MaterialBehaviour>().isAnimating == false)
         {
             gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_shoot");
-            isShooting = true;
+            // isShooting = true;
         }
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log("ASW");
+            //Debug.Log("ASW");
             isShooting = false;
             gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_release");
         }

@@ -10,8 +10,10 @@ public class MaterialBehaviour : MonoBehaviour
     [Range(2, 16)]
     public int numOfRayCasts;
     public float laserWidth;
+    public float laserLength;
     public Material _mat;
     public Vector4[] hitInfos = new Vector4[16];
+    public bool isAnimating = false;
 
     Ray laserRays, gLaserRays;
     RaycastHit rayHitInfo = new RaycastHit();
@@ -73,12 +75,10 @@ public class MaterialBehaviour : MonoBehaviour
         LineRenderer lr = gameObject.GetComponent<LineRenderer>();
         if(lr!=null)
         {
-            AnimationCurve c = new AnimationCurve();
-            c.AddKey(0f, laserWidth/10f);
-            c.AddKey(30f, laserWidth/10f);
-            
+
             lr.startWidth = laserWidth;
             lr.endWidth = laserWidth;
+            lr.SetPosition(1, new Vector3(laserLength, 0, 0));
             // lr.widthCurve = c;
             // lr.widthMultiplier = laserWidth;
         }
@@ -98,7 +98,7 @@ public class MaterialBehaviour : MonoBehaviour
             else
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(gLaserRays.origin, gLaserRays.origin + (transform.right*500f));
+                Gizmos.DrawLine(gLaserRays.origin, gLaserRays.origin + (transform.right*laserLength));
             }
         }
     }
@@ -139,4 +139,13 @@ public class MaterialBehaviour : MonoBehaviour
         //     // lr.widthMultiplier = laserWidth;
         // }
     // }
+
+    public void SetTrueDoneShoot()
+    {
+        gameObject.GetComponent<Animator>().SetBool("tr_doneShoot", true);
+    }
+    public void SetFalseDoneShoot()
+    {
+        gameObject.GetComponent<Animator>().SetBool("tr_doneShoot", false);
+    }
 }

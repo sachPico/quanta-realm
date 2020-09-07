@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -522,17 +522,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.9
+      value: -38
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -43.5625
+      value: -19.3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100.818756
+      value: 78.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
         type: 3}
@@ -1061,24 +1061,26 @@ MonoBehaviour:
   isLineRenderer: 1
   numOfRayCasts: 16
   laserWidth: 0.01
+  laserLength: 0
   _mat: {fileID: 2100000, guid: 36fb922aba998374898abed4ab23ff51, type: 2}
   hitInfos:
-  - {x: 40.461285, y: -0.0046653748, z: -0.000019073486, w: 1}
-  - {x: 40.463707, y: -0.004047394, z: -0.000019073486, w: 1}
-  - {x: 40.466125, y: -0.003414154, z: -0.000022888184, w: 1}
-  - {x: 40.468548, y: -0.0027923584, z: -0.000019073486, w: 1}
-  - {x: 40.47097, y: -0.002166748, z: -0.000019073486, w: 1}
-  - {x: 40.473373, y: -0.0015487671, z: -0.000019073486, w: 1}
-  - {x: 40.475796, y: -0.00092315674, z: -0.000022888184, w: 1}
-  - {x: 40.478218, y: -0.0002937317, z: -0.000022888184, w: 1}
-  - {x: 40.480637, y: 0.00032806396, z: -0.000019073486, w: 1}
-  - {x: 40.48306, y: 0.000957489, z: -0.000015258789, w: 1}
-  - {x: 40.48548, y: 0.0015792847, z: -0.000019073486, w: 1}
-  - {x: 40.48789, y: 0.0022010803, z: -0.000019073486, w: 1}
-  - {x: 40.490307, y: 0.0028266907, z: -0.000019073486, w: 1}
-  - {x: 40.49273, y: 0.0034561157, z: -0.000019073486, w: 1}
-  - {x: 40.49515, y: 0.004081726, z: -0.000019073486, w: 1}
-  - {x: 40.49757, y: 0.004711151, z: -0.000015258789, w: 1}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  isAnimating: 0
 --- !u!120 &1259428699
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1120,7 +1122,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 60.94, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 10
@@ -1352,6 +1354,7 @@ MonoBehaviour:
   isLineRenderer: 0
   numOfRayCasts: 16
   laserWidth: 10
+  laserLength: 0
   _mat: {fileID: 2100000, guid: 36fb922aba998374898abed4ab23ff51, type: 2}
   hitInfos:
   - {x: -114.27237, y: -31.646873, z: 74.763565, w: 1}
@@ -1370,6 +1373,7 @@ MonoBehaviour:
   - {x: 62.847694, y: 11.16304, z: 78.29346, w: 1}
   - {x: 62.98413, y: 10.616589, z: 78.564995, w: 1}
   - {x: 63.120567, y: 10.070141, z: 78.83653, w: 1}
+  isAnimating: 0
 --- !u!1 &1616252191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1435,7 @@ MonoBehaviour:
   vertMove: {x: 0, y: 0, z: 0}
   _playfield: {fileID: 303195040}
   newPos: {x: 0, y: 0, z: 0}
+  isShooting: 0
 --- !u!4 &1699975288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
