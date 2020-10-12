@@ -31,14 +31,14 @@ public class DeltaHoriController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && transform.GetChild(1).GetComponent<MaterialBehaviour>().isAnimating == false)
         {
-            gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_shoot");
+            //gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_shoot");
             // isShooting = true;
         }
         if(Input.GetKeyUp(KeyCode.Space))
         {
             //Debug.Log("ASW");
             isShooting = false;
-            gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_release");
+            //gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("tr_release");
         }
     }
 }
