@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 
-public class AlbatrossShoot : MonoBehaviour, IShoot
+public class AlbatrossShoot : ShootBase
 {
     public Material laserMaterial;
     public Vector3 laserOffset;
@@ -32,15 +32,16 @@ public class AlbatrossShoot : MonoBehaviour, IShoot
 
             /*newLaserAnchor.AddComponent<Rigidbody>().useGravity = false;
             newLaserAnchor.GetComponent<Rigidbody>().isKinematic = true;*/
-            SphereCollider newCollider = newLaserAnchor.AddComponent<SphereCollider>();
+            /*SphereCollider newCollider = newLaserAnchor.AddComponent<SphereCollider>();
             newCollider.isTrigger = true;
-            newCollider.radius = 1f;
+            newCollider.radius = 1f;*/
                 
             newLaserAnchor.transform.SetParent(transform);
 
             //newLaserAnchorPosition = new Vector3(0, -(laserHeight/2)+(laserHeight/laserLOD*i),0);
             newLaserAnchorPosition = transform.position - (transform.up*laserHeight/2) + (transform.up*(2*i+1)*laserHeight/(2*laserLOD)) + transform.TransformPoint(laserOffset);
             newLaserAnchor.transform.position = newLaserAnchorPosition;
+            newLaserAnchor.transform.localRotation = Quaternion.identity;
             laserAnchors.Add(newLaserAnchor);
             //laserRay[i] = new Ray(newLaserAnchorPosition, transform.right);
             
@@ -54,7 +55,7 @@ public class AlbatrossShoot : MonoBehaviour, IShoot
             tmpLineRenderer.positionCount = 2;
         }
     }
-    public void Shoot()
+    public override void Shoot()
     {
         if (laserWidth < laserWidthMax)
         {
@@ -70,18 +71,21 @@ public class AlbatrossShoot : MonoBehaviour, IShoot
             laserRay[i].origin = laserAnchors[i].transform.position;
             //laserRay[i].origin = laserAnchors[i].transform.position - (laserAnchors[i].transform.up*laserHeight/2) + (laserAnchors[i].transform.up*(2*i+1)*laserHeight/(2*laserLOD));
             laserRay[i].direction = transform.right;
-            if (!laserAnchors[i].GetComponent<AlbatrossAnchorHandler>().isCollide)
-            {
+            //if (!laserAnchors[i].GetComponent<AlbatrossAnchorHandler>().isCollide)
+            //{
                 if (Physics.Raycast(laserRay[i], out hitInfo, laserWidth))
                 {
-                    laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1,
-                        laserAnchors[i].transform.InverseTransformPoint(hitInfo.point));
+                    laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, laserAnchors[i].transform.InverseTransformPoint(hitInfo.point));
+                    if (hitInfo.collider.CompareTag("Enemy"))
+                    {
+                        base.SetDamage(hitInfo.collider.GetComponent<EnemyBehaviour>());
+                    }
                 }
                 else
                 {
                     laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, Vector3.right * laserWidth);
                 }
-            }
+            //}
         }
 
         if(Input.GetKey(KeyCode.Space))

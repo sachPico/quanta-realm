@@ -300,7 +300,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303195039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 297bc03a91196db469ae6ccac0e79833, type: 3}
   m_Name: 
@@ -308,7 +308,7 @@ MonoBehaviour:
   playfieldTransform: {fileID: 303195041}
   objProp:
   - objTag: DummyBullet
-    objPrefab: {fileID: 1975073536273065625, guid: 487a7427171973e4e931c0e640d4d07b,
+    objPrefab: {fileID: 8430527551777800872, guid: 487a7427171973e4e931c0e640d4d07b,
       type: 3}
     defaultSpawnNumber: 10
 --- !u!1001 &347176679
@@ -630,6 +630,76 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &533446163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533446165}
+  - component: {fileID: 533446164}
+  - component: {fileID: 533446166}
+  m_Layer: 0
+  m_Name: Spawn Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &533446164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533446163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee5736289dd2e649bc98a9b89384c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypesList:
+  - enemyPrefab: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b,
+      type: 3}
+    enemyName: PK-009A MeatAnt
+  - enemyPrefab: {fileID: 8949935781818369876, guid: 161acf649378b4244a2cd18e4c22fbd6,
+      type: 3}
+    enemyName: PK-009D FireAnt
+  spawnPropertiesList:
+  - spawnPosition: {x: 4, y: 2, z: 0}
+    enemyID: 1
+  - spawnPosition: {x: 4, y: -2, z: 0}
+    enemyID: 0
+  playfieldTransform: {fileID: 1590310859}
+--- !u!4 &533446165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533446163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &533446166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533446163}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de03e987490a38647ac6c70509afad84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 1
 --- !u!1001 &558734385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -768,11 +838,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d42fd69e9d77647a26f802ce56bf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   laserMaterial: {fileID: 2100000, guid: 275611ee01519d047bda904effb87aaa, type: 2}
   laserOffset: {x: 17, y: 0, z: 0}
   laserWidthMax: 50
-  laserHeight: 10
-  laserLOD: 100
+  laserHeight: 8
+  laserLOD: 50
   laserWidth: 0
   laserExtendingRate: 100
 --- !u!1 &674168297
