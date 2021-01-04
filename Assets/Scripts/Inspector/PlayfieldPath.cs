@@ -52,7 +52,7 @@ public class PlayfieldPath : MonoBehaviour
             Debug.Log("DHC NOT FOUND");
             Debug.Break();
         }
-        transform.GetChild(0).rotation = Quaternion.LookRotation(camDefForwardVectors[0]);
+        // transform.GetChild(0).rotation = Quaternion.LookRotation(camDefForwardVectors[0]);
     }
 
     void FixedUpdate()
@@ -76,15 +76,15 @@ public class PlayfieldPath : MonoBehaviour
     {
         Vector3 origin;
         time += Time.deltaTime;
-        if(isChangePivotDir)
-        {
-            transform.GetChild(0).GetChild(0).localRotation = Quaternion.Euler(_dhc.camRotateRange * _dhc.transform.localPosition.y/ _playfield.rightUpperBorder.y,0,0);
-            // Camera.main.transform.rotation = Quaternion.LookRotation(transform.GetChild(0).forward, transform.GetChild(0).up);
-        }
-        else
-        {
-            transform.GetChild(0).localPosition = new Vector3(0, pivotMaxYOffset * _dhc.transform.localPosition.y/ _playfield.rightUpperBorder.y,0);
-        }
+        // // if(isChangePivotDir)
+        // // {
+        // //     transform.GetChild(0).GetChild(0).localRotation = Quaternion.Euler(_dhc.camRotateRange * _dhc.transform.localPosition.y/ _playfield.rightUpperBorder.y,0,0);
+        // //     // Camera.main.transform.rotation = Quaternion.LookRotation(transform.GetChild(0).forward, transform.GetChild(0).up);
+        // // }
+        // else
+        // {
+        //     transform.GetChild(0).localPosition = new Vector3(0, pivotMaxYOffset * _dhc.transform.localPosition.y/ _playfield.rightUpperBorder.y,0);
+        // }
         if(nodeIndex-1<0)
         {
             origin = transform.right;
