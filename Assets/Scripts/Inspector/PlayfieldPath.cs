@@ -8,9 +8,9 @@ public class PlayfieldPath : MonoBehaviour
     public float time;
     public bool showGizmos;
     public int nodeIndex;
-    [SerializeField]
-    public List<Vector3> pathNodes = new List<Vector3>();
-    public List<Vector3> camDefForwardVectors = new List<Vector3>();
+    //[SerializeField]
+    //public List<Vector3> pathNodes = new List<Vector3>();
+    //public List<Vector3> camDefForwardVectors = new List<Vector3>();
     public List<float> camDefForwardAngle = new List<float>();
     public float pivotMaxYOffset;
     public float playfieldMoveSpeed;
@@ -26,28 +26,32 @@ public class PlayfieldPath : MonoBehaviour
     private Vector3 previousForward, rotateAxis, qa, qb;
     private float theta;
 
-    public void InitCamForwards()
+    public AnimationClip stageAnimation;
+
+    public List<Vector3> nodePos;
+
+    /*public void InitCamForwards()
     {
         for(int i=0; i<camDefForwardVectors.Count; i++)
         {
             camDefForwardVectors[i] = new Vector3(-(pathNodes[i+1]-pathNodes[i]).z, 0, (pathNodes[i+1]-pathNodes[i]).x).normalized;
         }
-    }
+    }*/
 
     void Start()
     {
         nodeIndex = 0;
         qInterpolant = 1;
-        
+
         _playfield = this.gameObject.GetComponent<Playfield>();
         _dhc = GameObject.Find(playerGameObjectName).GetComponent<DeltaHoriController>();
 
-        if(_playfield == null)
+        if (_playfield == null)
         {
             Debug.Log("PF NOT FOUND");
             Debug.Break();
         }
-        if(_dhc == null)
+        if (_dhc == null)
         {
             Debug.Log("DHC NOT FOUND");
             Debug.Break();
@@ -55,7 +59,7 @@ public class PlayfieldPath : MonoBehaviour
         // transform.GetChild(0).rotation = Quaternion.LookRotation(camDefForwardVectors[0]);
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         interpolant += 1f / (playfieldMoveSpeed * Vector3.Magnitude(pathNodes[nodeIndex+1]-pathNodes[nodeIndex]));
         qInterpolant += playfieldRotateSpeed * Time.deltaTime;
@@ -71,8 +75,8 @@ public class PlayfieldPath : MonoBehaviour
             }
         }
         transform.position = Vector3.Lerp(pathNodes[nodeIndex], pathNodes[nodeIndex+1], interpolant);
-    }
-    void Update()
+    }*/
+    /*void Update()
     {
         Vector3 origin;
         time += Time.deltaTime;
@@ -94,5 +98,5 @@ public class PlayfieldPath : MonoBehaviour
             origin = pathNodes[nodeIndex] - pathNodes[nodeIndex-1];
             transform.GetChild(0).localRotation = Quaternion.LookRotation(Vector3.Slerp(camDefForwardVectors[nodeIndex-1], camDefForwardVectors[nodeIndex], qInterpolant));
         }
-    }
+    }*/
 }
