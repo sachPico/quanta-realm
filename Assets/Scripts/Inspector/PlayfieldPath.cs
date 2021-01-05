@@ -19,6 +19,8 @@ public class PlayfieldPath : MonoBehaviour
     public float qInterpolant;
     public string playerGameObjectName;
 
+    public float maxSpeed;
+
     public Playfield _playfield;
     public DeltaHoriController _dhc;
 

@@ -348,18 +348,13 @@ MonoBehaviour:
   interpolant: 0
   qInterpolant: 0
   playerGameObjectName: DummyObject
+  maxSpeed: 30
   _playfield: {fileID: 0}
   _dhc: {fileID: 0}
   stageAnimation: {fileID: 7400000, guid: da06e2ba04f7cca4da9f5491b78c12e7, type: 2}
   nodePos:
-  - {x: -190.68, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 99, y: 0, z: 51}
-  - {x: 45, y: 0, z: 179}
-  - {x: 301.95, y: 0, z: 250.4}
-  - {x: 408.6, y: 0, z: 129.2}
-  - {x: 435.1, y: 0, z: 223.9}
-  - {x: 438.46, y: 0, z: 153.2}
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
 --- !u!114 &303195043
 MonoBehaviour:
