@@ -20,43 +20,40 @@ public class PathEditor : Editor
 
     void Draw()
     {
-        if(_playfieldPath.showGizmos)
+        Event guiEvent = Event.current;
+
+        //Draw poly-lines
+        //Handles.color = Color.black;
+        //Handles.DrawPolyLine(_playfieldPath.nodePos.ToArray());
+
+        ecb = AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation);
+        k = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]).keys;
+
+        /*for (int i = 0; i < k.Length; i++)
         {
-            Event guiEvent = Event.current;
+            Handles.color = Color.white;
+            nodePos = Handles.FreeMoveHandle(i + 200, _playfieldPath.nodePos[i], Quaternion.identity, 20f, Vector3.zero, Handles.SphereHandleCap);
+            //_playfieldPath.nodePos[i] = nodePos;
 
-            //Draw poly-lines
-            //Handles.color = Color.black;
-            //Handles.DrawPolyLine(_playfieldPath.nodePos.ToArray());
-
-            ecb = AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation);
-            k = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]).keys;
-
-            /*for (int i = 0; i < k.Length; i++)
+            if (guiEvent.button == 0 && GUIUtility.hotControl == i + 200)
             {
-                Handles.color = Color.white;
-                nodePos = Handles.FreeMoveHandle(i + 200, _playfieldPath.nodePos[i], Quaternion.identity, 20f, Vector3.zero, Handles.SphereHandleCap);
-                //_playfieldPath.nodePos[i] = nodePos;
+                _playfieldPath.nodePos[i] = nodePos;
+                /*Keyframe[] l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]).keys;
+                l[i].value = nodePos.x;
+                AnimationCurve ac = new AnimationCurve(l);
+                AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[0], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]));
 
-                if (guiEvent.button == 0 && GUIUtility.hotControl == i + 200)
-                {
-                    _playfieldPath.nodePos[i] = nodePos;
-                    /*Keyframe[] l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]).keys;
-                    l[i].value = nodePos.x;
-                    AnimationCurve ac = new AnimationCurve(l);
-                    AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[0], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[0]));
+                l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[1]).keys;
+                l[i].value = nodePos.y;
+                ac = new AnimationCurve(l);
+                AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[1], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[1]));
 
-                    l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[1]).keys;
-                    l[i].value = nodePos.y;
-                    ac = new AnimationCurve(l);
-                    AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[1], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[1]));
-
-                    l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[2]).keys;
-                    l[i].value = nodePos.z;
-                    ac = new AnimationCurve(l);
-                    AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[2], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[2]));
-                }
-            }*/
-        }
+                l = AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[2]).keys;
+                l[i].value = nodePos.z;
+                ac = new AnimationCurve(l);
+                AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[2], AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, ecb[2]));
+            }
+        }*/
     }
 
     public void Refresh()

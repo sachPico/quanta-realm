@@ -7,6 +7,7 @@ public class Playfield : MonoBehaviour
     // [HideInInspector]
     public float debugModifyBorder;
     public Vector3 leftBottomBorder, rightUpperBorder;
+    public Transform tertiaryPivot;
     public Transform qCamPivot;
     public Transform playerPivot;
     public float camPivotRotateRange;

@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class PlayfieldPath : MonoBehaviour
 {
-    public bool isChangePivotDir;
-    public float time;
-    public bool showGizmos;
-    public int nodeIndex;
     //[SerializeField]
     //public List<Vector3> pathNodes = new List<Vector3>();
     //public List<Vector3> camDefForwardVectors = new List<Vector3>();
-    public List<float> camDefForwardAngle = new List<float>();
-    public float pivotMaxYOffset;
-    public float playfieldMoveSpeed;
-    public float playfieldRotateSpeed;
-    public float interpolant;
-    public float qInterpolant;
     public string playerGameObjectName;
 
     public float maxSpeed;
@@ -24,12 +14,7 @@ public class PlayfieldPath : MonoBehaviour
     public Playfield _playfield;
     public DeltaHoriController _dhc;
 
-    private List<Vector3> camDefForwardDirection = new List<Vector3>();
-    private Vector3 previousForward, rotateAxis, qa, qb;
-    private float theta;
-
     public AnimationClip stageAnimation;
-
     public List<Vector3> nodePos;
 
     /*public void InitCamForwards()
@@ -42,8 +27,6 @@ public class PlayfieldPath : MonoBehaviour
 
     void Start()
     {
-        nodeIndex = 0;
-        qInterpolant = 1;
 
         _playfield = this.gameObject.GetComponent<Playfield>();
         _dhc = GameObject.Find(playerGameObjectName).GetComponent<DeltaHoriController>();
@@ -58,6 +41,7 @@ public class PlayfieldPath : MonoBehaviour
             Debug.Log("DHC NOT FOUND");
             Debug.Break();
         }
+        GetComponent<Animation>().Play("stage1_a");
         // transform.GetChild(0).rotation = Quaternion.LookRotation(camDefForwardVectors[0]);
     }
 

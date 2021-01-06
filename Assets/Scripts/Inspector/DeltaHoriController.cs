@@ -25,17 +25,14 @@ public class DeltaHoriController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //float z = Camera.main.WorldToViewportPoint(transform.position).z;
         playerPivotRelativePos += ((Vector3.right * speed * Input.GetAxisRaw("Horizontal")) + (Vector3.up * speed * Input.GetAxisRaw("Vertical"))) * Time.deltaTime;
-        // playerPivotRelativePos.x = Mathf.Clamp(playerPivotRelativePos.x, 0f, 1f);
-        // playerPivotRelativePos.y = Mathf.Clamp(playerPivotRelativePos.y, 0f, 1f);
-        // _playfield.playerPivot.position = Camera.main.ViewportToWorldPoint(new Vector3(.5f, .5f, 35f));
+        playerPivotRelativePos.x = Mathf.Clamp(playerPivotRelativePos.x, -23f, 21f);
+        playerPivotRelativePos.y = Mathf.Clamp(playerPivotRelativePos.y, -13f, 13f);
         transform.position = _playfield.playerPivot.TransformPoint(playerPivotRelativePos);
-        // viewportPos += ((Vector3.right * speed * Input.GetAxisRaw("Horizontal")) + (Vector3.up * speed * Camera.main.aspect * Input.GetAxisRaw("Vertical"))) * Time.deltaTime;
-        // viewportPos.x = Mathf.Clamp(viewportPos.x, 0f, 1f);
-        // viewportPos.y = Mathf.Clamp(viewportPos.y, 0f, 1f);
-        // transform.position = Camera.main.ViewportToWorldPoint(viewportPos);
 
         _playfield.qCamPivot.transform.localRotation = Quaternion.AngleAxis(_playfield.camPivotRotateRange * (playerPivotRelativePos.y / 13f), Vector3.right);
+        Camera.main.transform.localPosition = Vector3.forward * (-70f + _playfield.qCamPivot.GetChild(1).InverseTransformPoint(transform.position).z);
 
         if(Input.GetKey(KeyCode.X))
         {
