@@ -41,7 +41,7 @@ public class PlayfieldPath : MonoBehaviour
             Debug.Log("DHC NOT FOUND");
             Debug.Break();
         }
-        GetComponent<Animation>().Play("stage1_a");
+        //GetComponent<Animation>().Play("stage1_a");
         // transform.GetChild(0).rotation = Quaternion.LookRotation(camDefForwardVectors[0]);
     }
 

@@ -26,13 +26,14 @@ public class DeltaHoriController : MonoBehaviour
     void FixedUpdate()
     {
         //float z = Camera.main.WorldToViewportPoint(transform.position).z;
+        Debug.Log(_playfield.tertiaryPivot.GetChild(1).InverseTransformPoint(transform.position).z);
         playerPivotRelativePos += ((Vector3.right * speed * Input.GetAxisRaw("Horizontal")) + (Vector3.up * speed * Input.GetAxisRaw("Vertical"))) * Time.deltaTime;
         playerPivotRelativePos.x = Mathf.Clamp(playerPivotRelativePos.x, -23f, 21f);
         playerPivotRelativePos.y = Mathf.Clamp(playerPivotRelativePos.y, -13f, 13f);
         transform.position = _playfield.playerPivot.TransformPoint(playerPivotRelativePos);
 
         _playfield.qCamPivot.transform.localRotation = Quaternion.AngleAxis(_playfield.camPivotRotateRange * (playerPivotRelativePos.y / 13f), Vector3.right);
-        Camera.main.transform.localPosition = Vector3.forward * (-70f + _playfield.qCamPivot.GetChild(1).InverseTransformPoint(transform.position).z);
+        Camera.main.transform.localPosition = Vector3.forward * (-35f + _playfield.qCamPivot.GetChild(1).InverseTransformPoint(transform.position).z - _playfield.tertiaryPivot.GetChild(1).InverseTransformPoint(transform.position).z);
 
         if(Input.GetKey(KeyCode.X))
         {
