@@ -66,36 +66,36 @@ public class AlbatrossShoot : ShootBase
 
     public void Update()
     {
-        for (int i = 0; i < laserLOD; i++)
-        {
-            laserRay[i].origin = laserAnchors[i].transform.position;
-            //laserRay[i].origin = laserAnchors[i].transform.position - (laserAnchors[i].transform.up*laserHeight/2) + (laserAnchors[i].transform.up*(2*i+1)*laserHeight/(2*laserLOD));
-            laserRay[i].direction = transform.right;
-            //if (!laserAnchors[i].GetComponent<AlbatrossAnchorHandler>().isCollide)
-            //{
-                if (Physics.Raycast(laserRay[i], out hitInfo, laserWidth))
-                {
-                    laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, laserAnchors[i].transform.InverseTransformPoint(hitInfo.point));
-                    if (hitInfo.collider.CompareTag("Enemy"))
-                    {
-                        base.SetDamage(hitInfo.collider.GetComponent<EnemyBehaviour>());
-                    }
-                }
-                else
-                {
-                    laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, Vector3.right * laserWidth);
-                }
-            //}
-        }
+        // for (int i = 0; i < laserLOD; i++)
+        // {
+        //     laserRay[i].origin = laserAnchors[i].transform.position;
+        //     //laserRay[i].origin = laserAnchors[i].transform.position - (laserAnchors[i].transform.up*laserHeight/2) + (laserAnchors[i].transform.up*(2*i+1)*laserHeight/(2*laserLOD));
+        //     laserRay[i].direction = transform.right;
+        //     //if (!laserAnchors[i].GetComponent<AlbatrossAnchorHandler>().isCollide)
+        //     //{
+        //         if (Physics.Raycast(laserRay[i], out hitInfo, laserWidth))
+        //         {
+        //             laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, laserAnchors[i].transform.InverseTransformPoint(hitInfo.point));
+        //             if (hitInfo.collider.CompareTag("Enemy"))
+        //             {
+        //                 base.SetDamage(hitInfo.collider.GetComponent<EnemyBehaviour>());
+        //             }
+        //         }
+        //         else
+        //         {
+        //             laserAnchors[i].GetComponent<LineRenderer>().SetPosition(1, Vector3.right * laserWidth);
+        //         }
+        //     //}
+        // }
 
-        if(Input.GetKey(KeyCode.Space))
-        {
-            Shoot();
-        }
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            laserWidth=0;
-        }
+        // if(Input.GetKey(KeyCode.Space))
+        // {
+        //     Shoot();
+        // }
+        // if(Input.GetKeyUp(KeyCode.Space))
+        // {
+        //     laserWidth=0;
+        // }
     }
 
     public void OnDrawGizmos()

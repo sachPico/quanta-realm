@@ -2,35 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
-    public float health;
+    public int health;
     public int itemSpawn;
-    
-    public abstract void OnDestroyed();
-    public abstract void OnAttack();
-    public abstract void OnHit(float damage);
-}
 
-public class EnemyBehaviour : EnemyBase
-{
-    public override void OnHit(float damage)
+    public void OnTriggerEnter(Collider other)
     {
-        health -= damage * Time.deltaTime;
+        Debug.Log("H");
+        OnHit(other.GetComponent<BulletProperty>().attack);
+    }
+    public void OnHit(int damage)
+    {
+        health -= damage;
         if (health < 0)
         {
             OnDestroyed();
         }
     }
 
-    public override void OnDestroyed()
+    public void OnDestroyed()
     {
         //TEMPORARY
         gameObject.SetActive(false);
     }
 
-    public override void OnAttack()
+    public void OnAttack()
     {
         //Meh
     }
+    
 }

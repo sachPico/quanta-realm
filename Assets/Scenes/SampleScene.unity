@@ -310,7 +310,7 @@ MonoBehaviour:
   tertiaryPivot: {fileID: 674168298}
   qCamPivot: {fileID: 1358267602}
   playerPivot: {fileID: 64690773}
-  camPivotRotateRange: 15
+  camPivotRotateRange: 10
 --- !u!4 &303195041
 Transform:
   m_ObjectHideFlags: 0
@@ -340,14 +340,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGameObjectName: DummyPlayer
-  maxSpeed: 30
+  maxSpeed: 10
   _playfield: {fileID: 0}
   _dhc: {fileID: 0}
   stageAnimation: {fileID: 7400000, guid: da06e2ba04f7cca4da9f5491b78c12e7, type: 2}
   nodePos:
   - {x: -167, y: 0, z: 0}
-  - {x: 695, y: 0, z: 26}
-  - {x: 743.7355, y: 0, z: 307.44348}
+  - {x: -50.865406, y: 0, z: 0}
+  - {x: -50.86541, y: 77.32698, z: 0}
+  - {x: 67.06883, y: 0, z: 113.91048}
+  - {x: 114.03734, y: 0, z: 222.10652}
+  - {x: 294.10004, y: 0, z: 230.3995}
+  - {x: 373.4197, y: 0, z: 166.68367}
+  - {x: 408.5284, y: 0, z: 43.152958}
+  - {x: 545.0624, y: 0, z: 19.74709}
+  - {x: 832.43396, y: 0, z: 19.747093}
+  enemySpawnProperties:
+  - spawnTime: 4
+    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
+    spawnPosition: {x: 0, y: 0, z: 0}
+  - spawnTime: 16
+    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
+    spawnPosition: {x: 0, y: 0, z: 0}
+  - spawnTime: 25
+    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
+    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &303195043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +396,7 @@ MonoBehaviour:
     bullet: {fileID: 2666565334819312184, guid: fb55387ade02dba4f90f0c914e256fb2,
       type: 3}
     initialSize: 10
-    fireRate: 0.075
+    fireRate: 0.05
   weaponID: 0
 --- !u!111 &303195045
 Animation:
@@ -1014,7 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d42fd69e9d77647a26f802ce56bf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0
   laserMaterial: {fileID: 2100000, guid: 275611ee01519d047bda904effb87aaa, type: 2}
   laserOffset: {x: 17, y: 0, z: 0}
   laserWidthMax: 50
@@ -1045,7 +1062,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674168297}
-  m_LocalRotation: {x: -0.120590515, y: 0.37940946, z: 0.049950223, w: 0.9159756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1053,7 +1070,7 @@ Transform:
   - {fileID: 553432011}
   m_Father: {fileID: 1590310859}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -15, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

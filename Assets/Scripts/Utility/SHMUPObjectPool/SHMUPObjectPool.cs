@@ -60,7 +60,6 @@ public class SHMUPObjectPool : MonoBehaviour
                 bullet.transform.localEulerAngles = new Vector3(0,0,bulletDirection);
                 // Debug.Log(bulletDirection);
                 bullet.SetActive(true);
-                bullet.GetComponent<BulletProperty>().direction = bulletDirection;
                 //Debug.Log("No new object is added to \"MainWeapon\"");
                 return;
             }
@@ -75,7 +74,6 @@ public class SHMUPObjectPool : MonoBehaviour
             tmp.SetActive(false);
             objectPool["MainWeapon"].Add(tmp);
             tmp.SetActive(true);
-            tmp.GetComponent<BulletProperty>().direction = bulletDirection;
             //Debug.Log("New object is added to \"MainWeapon\"");
         }
     }
