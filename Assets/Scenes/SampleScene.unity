@@ -414,49 +414,22 @@ MonoBehaviour:
   - {x: 408.5284, y: 0, z: 43.152958}
   - {x: 545.0624, y: 0, z: 19.74709}
   - {x: 832.43396, y: 0, z: 19.747093}
-  enemySpawnProperties:
-  - enemyKeyword: PK-009A
-    spawnNumber: 3
-    spawnTime: 4
-    spawnInterval: 0.5
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: 3, z: 0}
-    enemyMoveBehaviour: 0
-  - enemyKeyword: PK-009A
-    spawnNumber: 4
+  spawnerAtTimeProperties:
+  - spawnerKeyword: PK-009A
     spawnTime: 5
-    spawnInterval: 0.5
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: 0, z: 0}
-    enemyMoveBehaviour: 0
-  - enemyKeyword: PK-009A
-    spawnNumber: 5
-    spawnTime: 6
-    spawnInterval: 0.1
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: -3, z: 0}
-    enemyMoveBehaviour: 0
-  - enemyKeyword: PK-009A
-    spawnNumber: 10
-    spawnTime: 11
-    spawnInterval: 0.25
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: 0, z: 0}
-    enemyMoveBehaviour: 0
-  - enemyKeyword: PK-009A
-    spawnNumber: 3
-    spawnTime: 12
-    spawnInterval: 0.5
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: -3, z: 0}
-    enemyMoveBehaviour: 0
-  - enemyKeyword: PK-009A
-    spawnNumber: 3
-    spawnTime: 12.5
-    spawnInterval: 0.5
-    enemy: {fileID: 4149641555810401426, guid: 3baf9881a60eb724db8980a53c34c45b, type: 3}
-    spawnPosition: {x: 25, y: 3, z: 0}
-    enemyMoveBehaviour: 0
+    enemySpawnerProperty:
+    - enemyMoveBehaviour: 0
+      spawnerPosition: {x: 25, y: 3, z: 0}
+      spawnNumber: 3
+      spawnInterval: 0.8
+    - enemyMoveBehaviour: 0
+      spawnerPosition: {x: 25, y: 0, z: 0}
+      spawnNumber: 5
+      spawnInterval: 0.5
+    - enemyMoveBehaviour: 0
+      spawnerPosition: {x: 25, y: -3, z: 0}
+      spawnNumber: 3
+      spawnInterval: 0.8
 --- !u!114 &303195043
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ public class PathEditor : Editor
         Keyframe[] newKeyframe = new Keyframe[_playfieldPath.nodePos.Count];
         EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation);
         
+        //Handles Playfield's locomotion adjustment in AnimationClip
         for(int i=0; i<newKeyframe.Length; i++)
         {
             newKeyframe[i].value = _playfieldPath.nodePos[i].x;
@@ -88,16 +89,14 @@ public class PathEditor : Editor
         }
         AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[2], new AnimationCurve(newKeyframe));
 
+
+        //Handles EnemySpawner adjustment in AnimationClip
         List<AnimationEvent> ae = new List<AnimationEvent>();
-        for(int j=0; j<_playfieldPath.enemySpawnProperties.Count; j++)
+        for(int j=0; j<_playfieldPath.spawnerAtTimeProperties.Count; j++)
         {
             ae.Add(new AnimationEvent());
             ae[j].functionName = "Spawn";
-            ae[j].time = _playfieldPath.enemySpawnProperties[j].spawnTime;
-        }
-        foreach(var d in ae)
-        {
-            Debug.Log(d.functionName + ": "+ d.time);
+            ae[j].time = _playfieldPath.spawnerAtTimeProperties[j].spawnTime;
         }
         AnimationUtility.SetAnimationEvents(_playfieldPath.stageAnimation, ae.ToArray());
     }
@@ -119,25 +118,25 @@ public class PathEditor : Editor
             AdjustAnimationClip();
         }
 
-        if (GUILayout.Button("Output All Enemies Spawn Point"))
-        {
-            foreach(var ep in _playfieldPath.enemySpawnProperties)
-            {
-                Debug.Log(new Vector3
-                (
-                    AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[0]).Evaluate(ep.spawnTime),
-                    AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[1]).Evaluate(ep.spawnTime),
-                    AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[2]).Evaluate(ep.spawnTime)
-                ));
-            }
-        }
-        if (GUILayout.Button("Get Animation Events"))
-        {
-            foreach(var ae in AnimationUtility.GetAnimationEvents(_playfieldPath.stageAnimation))
-            {
-                Debug.Log(ae.functionName+": "+ae.time);
-            }
-        }
+        // if (GUILayout.Button("Output All Enemies Spawner Point"))
+        // {
+        //     foreach(var ep in _playfieldPath.spawnerAtTimeProperties)
+        //     {
+        //         Debug.Log(new Vector3
+        //         (
+        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[0]).Evaluate(ep.spawnTime),
+        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[1]).Evaluate(ep.spawnTime),
+        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[2]).Evaluate(ep.spawnTime)
+        //         ));
+        //     }
+        // }
+        // if (GUILayout.Button("Get Animation Events"))
+        // {
+        //     foreach(var ae in AnimationUtility.GetAnimationEvents(_playfieldPath.stageAnimation))
+        //     {
+        //         Debug.Log(ae.functionName+": "+ae.time);
+        //     }
+        // }
     }
 
     public void OnEnable()

@@ -7,26 +7,32 @@ public class PlayfieldPath : MonoBehaviour
 {
     public enum EnemyMoveEnum{Sinusoidal, Straight};
     [System.Serializable]
-    public struct EnemySpawnProperty
+    public struct SpawnerProperty
     {
-        public string enemyKeyword;
-        public int spawnNumber;
-        public float spawnTime;
-        public float spawnInterval;
-        //Replace with a struct that can handle multiple enemy spawns in one call
-        public GameObject enemy;
-        //Should be removed
-        public Vector3 spawnPosition;
         public EnemyMoveEnum enemyMoveBehaviour;
+        public Vector3 spawnerPosition;
+        public int spawnNumber;
+        public float spawnInterval;
+    }
+
+    [System.Serializable]
+    public struct SpawnerAtTimeProperty
+    {
+        public string spawnerKeyword;
+        public float spawnTime;
+        public SpawnerProperty[] enemySpawnerProperty;
     }
 
     public string playerGameObjectName;
+
+    public float maxSpeed;
 
     public Playfield _playfield;
     public DeltaHoriController _dhc;
 
     public AnimationClip stageAnimation;
-    public List<EnemySpawnProperty> enemySpawnProperties;
+    public List<Vector3> nodePos;
+    public List<SpawnerAtTimeProperty> spawnerAtTimeProperties;
 
     int spawnCount=0;
 
@@ -51,30 +57,33 @@ public class PlayfieldPath : MonoBehaviour
     public void Spawn()
     {
         //Spawns EnemySpawner
-        EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner").GetComponent<EnemySpawner>();
-        es.transform.localPosition = enemySpawnProperties[spawnCount].spawnPosition;
-        switch(enemySpawnProperties[spawnCount].enemyMoveBehaviour)
+        for(int i=0; i<spawnerAtTimeProperties[spawnCount].enemySpawnerProperty.Length; i++)
         {
-            case EnemyMoveEnum.Sinusoidal:
-                es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
-                break;
+            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner").GetComponent<EnemySpawner>();
+            es.transform.localPosition = spawnerAtTimeProperties[spawnCount].enemySpawnerProperty[i].spawnerPosition;
+            switch(spawnerAtTimeProperties[spawnCount].enemySpawnerProperty[i].enemyMoveBehaviour)
+            {
+                case EnemyMoveEnum.Sinusoidal:
+                    es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
+                    break;
+            }
+            es.gameObject.SetActive(true);
+            StartCoroutine(es.Spawn(spawnerAtTimeProperties[spawnCount].spawnerKeyword, spawnerAtTimeProperties[spawnCount].enemySpawnerProperty[i].spawnNumber, spawnerAtTimeProperties[spawnCount].enemySpawnerProperty[i].spawnInterval));
         }
-        es.gameObject.SetActive(true);
-        StartCoroutine(es.Spawn(enemySpawnProperties[spawnCount].enemyKeyword, enemySpawnProperties[spawnCount].spawnNumber, enemySpawnProperties[spawnCount].spawnInterval));
         spawnCount++;
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        foreach(var ep in enemySpawnProperties)
-        {
-            Gizmos.DrawSphere(new Vector3
-            (
-                UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[0]).Evaluate(ep.spawnTime),
-                UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[1]).Evaluate(ep.spawnTime),
-                UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[2]).Evaluate(ep.spawnTime)
-            ), 5f);
-        }
-    }
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.white;
+    //     foreach(var ep in enemySpawnProperties)
+    //     {
+    //         Gizmos.DrawSphere(new Vector3
+    //         (
+    //             UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[0]).Evaluate(ep.spawnTime),
+    //             UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[1]).Evaluate(ep.spawnTime),
+    //             UnityEditor.AnimationUtility.GetEditorCurve(stageAnimation, UnityEditor.AnimationUtility.GetCurveBindings(stageAnimation)[2]).Evaluate(ep.spawnTime)
+    //         ), 5f);
+    //     }
+    // }
 }
