@@ -45,7 +45,7 @@ public class PathEditor : Editor
     {
         Keyframe[] newKeyframe = new Keyframe[_playfieldPath.nodePos.Count];
         EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation);
-        float time = 0;
+        
         for(int i=0; i<newKeyframe.Length; i++)
         {
             newKeyframe[i].value = _playfieldPath.nodePos[i].x;
@@ -60,7 +60,6 @@ public class PathEditor : Editor
         }
         AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[0], new AnimationCurve(newKeyframe));
 
-        time=0;
         for(int i=0; i<newKeyframe.Length; i++)
         {
             newKeyframe[i].value = _playfieldPath.nodePos[i].y;
@@ -75,7 +74,6 @@ public class PathEditor : Editor
         }
         AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[1], new AnimationCurve(newKeyframe));
 
-        time=0;
         for(int i=0; i<newKeyframe.Length; i++)
         {
             newKeyframe[i].value = _playfieldPath.nodePos[i].z;
