@@ -46,16 +46,16 @@ public class PlayfieldPath : MonoBehaviour
         for(int i=0; i<spat.enemySpawnerProperty.Length; i++)
         {
             sp = spat.enemySpawnerProperty[i];
-            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner").GetComponent<EnemySpawner>();
-            es.transform.localPosition = sp.spawnerPosition;
-            switch(sp.enemyMoveBehaviour)
-            {
-                case EnemyMoveEnum.Sinusoidal:
-                    es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
-                    break;
-            }
-            es.gameObject.SetActive(true);
-            StartCoroutine(es.Spawn(spat.spawnerKeyword, sp.spawnNumber, sp.spawnInterval, sp.parameterA, sp.parameterB, sp.parameterC));
+            //EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner").GetComponent<EnemySpawner>();
+            //es.transform.localPosition = sp.spawnerPosition;
+            // switch(sp.enemyMoveBehaviour)
+            // {
+            //     case EnemyMoveEnum.Sinusoidal:
+            //         es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
+            //         break;
+            // }
+            //es.gameObject.SetActive(true);
+            //StartCoroutine(es.Spawn(spat.spawnerKeyword, sp.spawnNumber, sp.spawnInterval, sp.parameterA, sp.parameterB, sp.parameterC));
         }
         spawnCount++;
     }

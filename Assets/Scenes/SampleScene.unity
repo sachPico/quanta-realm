@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolProperties:
-  - name: BulletPool
+  - name: Dummy
     defaultSpawnedObject: {fileID: 2666565334819312184, guid: fb55387ade02dba4f90f0c914e256fb2,
       type: 3}
     poolTransform: {fileID: 468425424}
@@ -294,6 +294,14 @@ MonoBehaviour:
     defaultSpawnedObject: {fileID: 7788249863148319557, guid: 64e2fc3a39bf2ba409d3fb90d50143be,
       type: 3}
     poolTransform: {fileID: 1864000324}
+  - name: Straight
+    defaultSpawnedObject: {fileID: 2666565334819312184, guid: fb55387ade02dba4f90f0c914e256fb2,
+      type: 3}
+    poolTransform: {fileID: 468425424}
+  - name: AirToAir
+    defaultSpawnedObject: {fileID: 1242581798301440558, guid: 20b53a74e0989a947bcbd30601fcfd96,
+      type: 3}
+    poolTransform: {fileID: 468425424}
 --- !u!1 &271118147
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +350,6 @@ GameObject:
   - component: {fileID: 303195040}
   - component: {fileID: 303195042}
   - component: {fileID: 303195043}
-  - component: {fileID: 303195044}
   - component: {fileID: 303195045}
   m_Layer: 0
   m_Name: PlayField
@@ -398,10 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5e77ffe057ec04d8fec7234374aff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGameObjectName: DummyPlayer
   maxSpeed: 10
-  _playfield: {fileID: 0}
-  _dhc: {fileID: 0}
   stageAnimation: {fileID: 7400000, guid: da06e2ba04f7cca4da9f5491b78c12e7, type: 2}
   nodePos:
   - {x: -167, y: 0, z: 0}
@@ -422,23 +426,23 @@ MonoBehaviour:
       spawnerPosition: {x: 25, y: 3, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 10
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: 0, z: 0}
       spawnNumber: 5
       spawnInterval: 0.5
-      parameterA: 10
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: -3, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 10
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
   - spawnerKeyword: PK-009A
     spawnTime: 10
     enemySpawnerProperty:
@@ -446,23 +450,23 @@ MonoBehaviour:
       spawnerPosition: {x: 25, y: 6, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 5
-      parameterB: 180
-      parameterC: 225
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: 0, z: 0}
       spawnNumber: 5
       spawnInterval: 0.5
-      parameterA: 10
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: -6, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 5
-      parameterB: 180
-      parameterC: 135
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
   - spawnerKeyword: PK-009A
     spawnTime: 13
     enemySpawnerProperty:
@@ -470,23 +474,23 @@ MonoBehaviour:
       spawnerPosition: {x: 25, y: 3, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 15
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: 0, z: 0}
       spawnNumber: 5
       spawnInterval: 0.5
-      parameterA: 15
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
     - enemyMoveBehaviour: 0
       spawnerPosition: {x: 25, y: -3, z: 0}
       spawnNumber: 3
       spawnInterval: 0.8
-      parameterA: 15
-      parameterB: 180
-      parameterC: 180
+      parameterA: 0
+      parameterB: 0
+      parameterC: 0
 --- !u!114 &303195043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,25 +505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDynamic: 1
   poolParent: {fileID: 468425424}
---- !u!114 &303195044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303195039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c24336bc63a6945b8b49ecac78e7ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponTypes:
-  - weaponName: Dummy
-    bullet: {fileID: 2666565334819312184, guid: fb55387ade02dba4f90f0c914e256fb2,
-      type: 3}
-    initialSize: 10
-    fireRate: 0.05
-  weaponID: 0
 --- !u!111 &303195045
 Animation:
   m_ObjectHideFlags: 0
@@ -1215,6 +1200,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &811110354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811110356}
+  - component: {fileID: 811110355}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &811110355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811110354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c24336bc63a6945b8b49ecac78e7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1693757713}
+  mainWeaponTypes:
+  - weaponName: Dummy
+    weaponAttack: 
+    weaponFireRate: []
+    spawner: []
+    initialPoolSize: 0
+  - weaponName: Straight
+    weaponAttack: 
+    weaponFireRate: []
+    spawner: []
+    initialPoolSize: 0
+  - weaponName: AirToAir
+    weaponAttack: 0100000001000000020000000200000003000000030000000400000004000000050000000500000008000000
+    weaponFireRate:
+    - 1
+    - 0.5
+    - 0.5
+    - 0.4
+    - 0.4
+    - 0.3
+    - 0.3
+    - 0.2
+    - 0.2
+    - 0.1
+    - 0.05
+    spawner:
+    - position: {x: 3.6, y: 0, z: 0}
+      direction: 0
+    initialPoolSize: 0
+  mainWeaponID: 2
+  mainWeaponPower: 0
+  subWeaponID: 0
+  subWeaponPower: 0
+  activeMainWeaponAttack: 0
+  activeMainWeaponFireRate: 0
+--- !u!4 &811110356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811110354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -114.1721, y: 0.076008074, z: -66.644035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887468287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,12 +2039,6 @@ MonoBehaviour:
   max: {x: 21, y: 13}
   playerPivotRelativePos: {x: 0, y: 0, z: 0}
   speed: 15
-  camMaxPlayerYPos: 9
-  bulletSpawners:
-  - {fileID: 271118148}
-  - {fileID: 407131062}
-  - {fileID: 1208440193}
-  - {fileID: 1253318999}
 --- !u!4 &1699975288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 8d73c9502702adc4781426b58b4aff9a,
