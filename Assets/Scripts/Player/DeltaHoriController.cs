@@ -9,7 +9,6 @@ public class DeltaHoriController : MonoBehaviour
     public Vector3 playerPivotRelativePos;
     [Range(1f,20f)]
     public float speed;
-    public List<Transform> bulletSpawners;
 
     Playfield _playfield;
 
@@ -25,7 +24,6 @@ public class DeltaHoriController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //float z = Camera.main.WorldToViewportPoint(transform.position).z;
         playerPivotRelativePos += ((Vector3.right * speed * Input.GetAxisRaw("Horizontal")) + (Vector3.up * speed * Input.GetAxisRaw("Vertical"))) * Time.deltaTime;
         playerPivotRelativePos.x = Mathf.Clamp(playerPivotRelativePos.x, min.x, max.x);
         playerPivotRelativePos.y = Mathf.Clamp(playerPivotRelativePos.y, min.y, max.y);
@@ -36,22 +34,11 @@ public class DeltaHoriController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.X))
         {
-            if(fireCounter >= WeaponUtility.activeFireRate)
-            {
-                foreach(var spawners in bulletSpawners)
-                {
-                    WeaponUtility.Shoot(spawners.position, spawners.localEulerAngles.z);
-                }
-                fireCounter = 0;
-            }
-            else
-            {
-                fireCounter += Time.deltaTime;
-            }
+            WeaponUtility.instance.Shoot();
         }
         if(Input.GetKeyUp(KeyCode.X))
         {
-            fireCounter = WeaponUtility.activeFireRate;
+            WeaponUtility.instance.ResetFireCounter();
         }
     }
 }

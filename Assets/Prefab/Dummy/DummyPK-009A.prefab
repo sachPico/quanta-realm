@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ab50fee6d54584ab0b4fce1303fb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 5
   itemSpawn: 0
   timer: 0
   initialSpawnPoint: {x: 0, y: 0, z: 0}

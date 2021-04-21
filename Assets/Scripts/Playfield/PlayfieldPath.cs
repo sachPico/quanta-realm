@@ -23,12 +23,7 @@ public class PlayfieldPath : MonoBehaviour
         public SpawnerProperty[] enemySpawnerProperty;
     }
 
-    public string playerGameObjectName;
-
     public float maxSpeed;
-
-    public Playfield _playfield;
-    public DeltaHoriController _dhc;
 
     public AnimationClip stageAnimation;
     public List<Vector3> nodePos;
@@ -38,19 +33,6 @@ public class PlayfieldPath : MonoBehaviour
 
     void Start()
     {
-        _playfield = this.gameObject.GetComponent<Playfield>();
-        _dhc = GameObject.Find(playerGameObjectName).GetComponent<DeltaHoriController>();
-
-        if (_playfield == null)
-        {
-            Debug.Log("PF NOT FOUND");
-            Debug.Break();
-        }
-        if (_dhc == null)
-        {
-            Debug.Log("DHC NOT FOUND");
-            Debug.Break();
-        }
         GetComponent<Animation>().Play("stage1_a");
     }
 

@@ -20,9 +20,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Bullet")
+        if(other.CompareTag("Bullet"))
         {
-            health -= other.GetComponent<BulletProperty>().attack;
+            health -= WeaponUtility.instance.activeMainWeaponAttack;
             if (health < 0)
             {
                 OnDestroyed();
