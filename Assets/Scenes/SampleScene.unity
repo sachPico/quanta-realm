@@ -299,7 +299,7 @@ MonoBehaviour:
       type: 3}
     poolTransform: {fileID: 468425424}
   - name: AirToAir
-    defaultSpawnedObject: {fileID: 2666565334819312184, guid: fb55387ade02dba4f90f0c914e256fb2,
+    defaultSpawnedObject: {fileID: 1242581798301440558, guid: 20b53a74e0989a947bcbd30601fcfd96,
       type: 3}
     poolTransform: {fileID: 468425424}
 --- !u!1 &271118147
