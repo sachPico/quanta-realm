@@ -9,13 +9,17 @@ public class EnemyBehaviour : MonoBehaviour
     public int itemSpawn;
     public float timer = 0;
 
+    public float parameterA;
+    public float parameterB;
+    public float parameterC;
+
     //For movement parameter
     public Vector3 initialSpawnPoint;
 
     public void Reset()
     {
         timer = 0;
-        transform.localPosition = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f);
+        transform.localPosition = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f, parameterA, parameterB, parameterC);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -45,6 +49,6 @@ public class EnemyBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         //Debug.Log(enemyMoveBehaviour);
-        transform.localPosition = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f);
+        transform.localPosition = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f, parameterA, parameterB, parameterC);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponUtility : MonoBehaviour
 {
@@ -27,10 +28,15 @@ public class WeaponUtility : MonoBehaviour
     [Header("Main Weapon")]
     public int mainWeaponID;
     public int mainWeaponPower;
+    public int maxMainWeaponPower = 0;
 
     [Header("Sub Weapon")]
     public int subWeaponID;
     public int subWeaponPower;
+
+    [Header("Weapon UI")]
+    public Image mainWeapon;
+    public Image mainWeaponMax;
 
     public int activeMainWeaponAttack;
     public float activeMainWeaponFireRate;
@@ -65,16 +71,29 @@ public class WeaponUtility : MonoBehaviour
 
     public void MainPowerUp()
     {
-        mainWeaponPower = Mathf.Clamp(mainWeaponPower + 1, 0, 10);
+        mainWeaponPower = Mathf.Clamp(mainWeaponPower + 1, 0, maxMainWeaponPower);
         activeMainWeaponFireRate = activeWeaponType.weaponFireRate[mainWeaponPower];
         activeMainWeaponAttack = activeWeaponType.weaponAttack[mainWeaponPower];
+
+        mainWeapon.fillAmount = mainWeaponPower / 10f;
     }
 
     public void MainPowerDown()
     {
-        mainWeaponPower = Mathf.Clamp(mainWeaponPower - 1, 0, 10);
+        mainWeaponPower = Mathf.Clamp(mainWeaponPower - 1, 0, maxMainWeaponPower);
         activeMainWeaponFireRate = activeWeaponType.weaponFireRate[mainWeaponPower];
         activeMainWeaponAttack = activeWeaponType.weaponAttack[mainWeaponPower];
+
+        mainWeapon.fillAmount = mainWeaponPower / 10f;
+    }
+
+    public void MaxMainPowerUp()
+    {
+        if (maxMainWeaponPower < 10)
+        {
+            maxMainWeaponPower += 1;
+        }
+        mainWeaponMax.fillAmount = maxMainWeaponPower / 10f;
     }
 
     void Shoot(string poolName, Vector3 spawnPosition, float spawnDirection)
@@ -113,6 +132,9 @@ public class WeaponUtility : MonoBehaviour
         {
             SHMUPObjectPool.playfieldTransform = GameObject.FindGameObjectWithTag("Playfield").transform;
         }
+
+        mainWeapon.fillAmount = 0f;
+        mainWeaponMax.fillAmount = 0f;
     }
 
     private void Update()
@@ -124,6 +146,10 @@ public class WeaponUtility : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.A))
         {
             MainPowerDown();
+        }
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            MaxMainPowerUp();
         }
     }
 }
