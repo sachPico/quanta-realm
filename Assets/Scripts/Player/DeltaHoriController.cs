@@ -41,4 +41,13 @@ public class DeltaHoriController : MonoBehaviour
             WeaponUtility.instance.ResetFireCounter();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Qbe"))
+        {
+            WeaponUtility.instance.QbeFragmentAdd(other.GetComponent<QbeFrag>().val);
+            other.gameObject.SetActive(false);
+        }
+    }
 }

@@ -16,6 +16,12 @@ public class EnemyBehaviour : MonoBehaviour
     //For movement parameter
     public Vector3 initialSpawnPoint;
 
+    [Header("Qbe Spawn")]
+    public int smallQbeFragSpawnNumber;
+    public int mediumQbeFragSpawnNumber;
+    public int largeQbeFragSpawnNumber;
+    public int qbeSpawnNumber;
+
     public void Reset()
     {
         timer = 0;
@@ -38,12 +44,27 @@ public class EnemyBehaviour : MonoBehaviour
     public void OnDestroyed()
     {
         //TEMPORARY
+        if (smallQbeFragSpawnNumber != 0) SpawnQbe(smallQbeFragSpawnNumber, "SmallQbe");
+        if (mediumQbeFragSpawnNumber != 0) SpawnQbe(mediumQbeFragSpawnNumber, "MediumQbe");
+        if (largeQbeFragSpawnNumber != 0) SpawnQbe(largeQbeFragSpawnNumber, "LargeQbe");
+        if (qbeSpawnNumber != 0) SpawnQbe(qbeSpawnNumber, "Qbe");
         gameObject.SetActive(false);
     }
 
     public void OnAttack()
     {
         //Meh
+    }
+
+    private void SpawnQbe(int spawnNumber, string keyword)
+    {
+        Transform qbeTransform;
+        for (int i = 0; i < spawnNumber; i++)
+        {
+            qbeTransform = PoolHandler.instance.RequestObject(keyword).transform;
+            qbeTransform.localPosition = transform.localPosition + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+            qbeTransform.gameObject.SetActive(true);
+        }
     }
 
     void FixedUpdate()

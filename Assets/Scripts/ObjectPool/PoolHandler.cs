@@ -34,10 +34,6 @@ public class PoolHandler : MonoBehaviour
             pools.Add(property.name, property.poolTransform);
             defaultSpawnedObjects.Add(property.name, property.defaultSpawnedObject);
         }
-        foreach(var a in poolProperties)
-        {
-            Debug.Log(pools[a.name].name);
-        }
     }
 
     public GameObject SpawnNewObject(string keyword)
