@@ -11,7 +11,11 @@ public class AirToAirLaser : MonoBehaviour
 
     private float center;
 
+    private float sqrDist;
     private float radius;
+    private float offset;
+    private float multiplier = 1;
+    private ParticleSystem particleSystem;
     private Vector3 redLocalPos;
     private Vector3 blueLocalPos;
     private Vector3 initialLocalPos;
@@ -20,31 +24,36 @@ public class AirToAirLaser : MonoBehaviour
     {
         squaredRadius = 64;
         radius = Mathf.Sqrt(squaredRadius);
-        center = transform.localPosition.x + radius;
-        initialLocalPos = transform.localPosition;
+        offset = radius;
+        debug.transform.localPosition = new Vector3(offset, 0f, 0f);
         //Debug.Break();
+    }
+
+    private void Start()
+    {
+        //particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(transform.localPosition.x - center+":"+radius);
-        if (transform.localPosition.x - center >= radius)
+        sqrDist = Vector3.SqrMagnitude(transform.localPosition - debug.transform.localPosition);
+        if (sqrDist >= squaredRadius)
         {
             squaredRadius = 16;
+            offset+=radius;
             radius = Mathf.Sqrt(squaredRadius);
-            center = transform.localPosition.x + radius;
-            initialLocalPos = transform.localPosition;
-            Debug.Log("Hubla");
-            //Debug.Break();
+            offset+=radius;
+            debug.transform.localPosition = new Vector3(offset, 0f, 0f);
+            multiplier *= -1;
+            // Debug.Break();
         }
 
-        redLocalPos.y = Mathf.Sqrt(Mathf.Abs(squaredRadius - Mathf.Pow(Mathf.Abs(transform.localPosition.x - center),2)));
-        //Debug.Log(redLocalPos.y);
+        sqrDist = Vector3.SqrMagnitude(transform.localPosition - debug.transform.localPosition);;
+        redLocalPos.y = (Mathf.Sqrt(Mathf.Abs(squaredRadius - sqrDist))) * multiplier;
         blueLocalPos.y = -redLocalPos.y;
 
         redLaser.transform.localPosition = redLocalPos;
         blueLaser.transform.localPosition = blueLocalPos;
-        debug.transform.position = transform.parent.TransformPoint(initialLocalPos+Vector3.right*radius);// - new Vector3(center,0,0));
     }
 
     private void OnDrawGizmos()

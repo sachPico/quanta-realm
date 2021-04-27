@@ -113,11 +113,10 @@ public class WeaponUtility : MonoBehaviour
 
     void Shoot(string poolName, Vector3 spawnPosition, float spawnDirection)
     {
-        BulletProperty bp = PoolHandler.instance.RequestObject(poolName).GetComponent<BulletProperty>();
-        Debug.Log(poolName+" "+spawnPosition);
+        GameObject bp = PoolHandler.instance.RequestObject(poolName);
         bp.transform.position = spawnPosition;
         bp.transform.localEulerAngles = Vector3.forward * spawnDirection;
-        bp.gameObject.SetActive(true);
+        bp.SetActive(true);
     }
 
     private void SetCursor(int id)
