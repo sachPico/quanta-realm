@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : PlayfieldObject
 {
     public EnemyMoveBase enemyMoveBehaviour;
     public int health;
@@ -48,6 +48,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (mediumQbeFragSpawnNumber != 0) SpawnQbe(mediumQbeFragSpawnNumber, "MediumQbe");
         if (largeQbeFragSpawnNumber != 0) SpawnQbe(largeQbeFragSpawnNumber, "LargeQbe");
         if (qbeSpawnNumber != 0) SpawnQbe(qbeSpawnNumber, "Qbe");
+
+        relativePos = Vector3.zero;
         gameObject.SetActive(false);
     }
 
@@ -58,18 +60,23 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SpawnQbe(int spawnNumber, string keyword)
     {
-        Transform qbeTransform;
+        PlayfieldObject qbe;
         for (int i = 0; i < spawnNumber; i++)
         {
-            qbeTransform = PoolHandler.instance.RequestObject(keyword).transform;
-            qbeTransform.localPosition = transform.localPosition + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
-            qbeTransform.gameObject.SetActive(true);
+            qbe = PoolHandler.instance.RequestObject(keyword).GetComponent<PlayfieldObject>();
+            qbe.relativePos = relativePos + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
+            qbe.gameObject.SetActive(true);
         }
+    }
+
+    protected override void UpdateRelativePos()
+    {
+        relativePos = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f, parameterA, parameterB, parameterC);
+        base.UpdateRelativePos();
     }
 
     void FixedUpdate()
     {
-        //Debug.Log(enemyMoveBehaviour);
-        transform.localPosition = enemyMoveBehaviour.Move(initialSpawnPoint, ref timer, -10f, 180f, parameterA, parameterB, parameterC);
+        UpdateRelativePos();
     }
 }

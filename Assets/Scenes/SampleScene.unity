@@ -213,12 +213,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9255310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 82724278}
-  m_RootOrder: 3
+  m_Father: {fileID: 303195041}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28385245
 GameObject:
@@ -398,12 +398,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60423560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 82724278}
-  m_RootOrder: 5
+  m_Father: {fileID: 303195041}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &64690772
 GameObject:
@@ -466,15 +466,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468425424}
-  - {fileID: 979511357}
-  - {fileID: 1864000324}
-  - {fileID: 9255311}
-  - {fileID: 923068614}
-  - {fileID: 60423561}
   - {fileID: 520632205}
   - {fileID: 1667827103}
   - {fileID: 1276288869}
   - {fileID: 357474681}
+  - {fileID: 341109510}
   m_Father: {fileID: 64690773}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -535,6 +531,10 @@ MonoBehaviour:
     defaultSpawnedObject: {fileID: 2666565334819312184, guid: 29b179718fac67e46a71fe58d319d637,
       type: 3}
     poolTransform: {fileID: 1276288869}
+  - name: DummyEnemyBullet
+    defaultSpawnedObject: {fileID: 7141891877702995720, guid: babce5b07c99bc640985ba50c4834d20,
+      type: 3}
+    poolTransform: {fileID: 341109510}
 --- !u!1 &123233155
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +701,11 @@ Transform:
   m_Children:
   - {fileID: 1590310859}
   - {fileID: 1693757713}
+  - {fileID: 979511357}
+  - {fileID: 1864000324}
+  - {fileID: 9255311}
+  - {fileID: 923068614}
+  - {fileID: 60423561}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -832,6 +837,36 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &341109509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 341109510}
+  m_Layer: 0
+  m_Name: DummyEnemyBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &341109510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341109509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 82724278}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &347176679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1055,7 +1090,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 82724278}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &407131061
 GameObject:
@@ -1467,7 +1502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 82724278}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &532803539
 PrefabInstance:
@@ -2198,13 +2233,7 @@ MonoBehaviour:
     - 0.3
     - 0.25
     spawner:
-    - position: {x: 3.6, y: 0.4, z: 0}
-      direction: 0
-    - position: {x: 3.6, y: -0.4, z: 0}
-      direction: 0
-    - position: {x: 2, y: 1.6, z: 0}
-      direction: 0
-    - position: {x: 2, y: -1.6, z: 0}
+    - position: {x: 3.6, y: 0, z: 0}
       direction: 0
     initialPoolSize: 0
   - weaponName: AirToAir
@@ -2267,7 +2296,7 @@ MonoBehaviour:
     weaponFireRate: []
     spawner: []
     initialPoolSize: 0
-  mainWeaponID: 2
+  mainWeaponID: 1
   mainWeaponPower: 0
   maxMainWeaponPower: 0
   subWeaponID: 1
@@ -2360,12 +2389,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923068613}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 82724278}
-  m_RootOrder: 4
+  m_Father: {fileID: 303195041}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -2473,12 +2502,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979511356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 82724278}
-  m_RootOrder: 1
+  m_Father: {fileID: 303195041}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &986722080
 GameObject:
@@ -2964,7 +2993,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 82724278}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358267601
 GameObject:
@@ -3272,7 +3301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 82724278}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693757712 stripped
 GameObject:
@@ -3298,6 +3327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258114ef5d2c1ce4297b3bb9cb0e5953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relativePos: {x: 0, y: 0, z: 0}
   fireCounter: 0
   min: {x: -23, y: -13}
   max: {x: 21, y: 13}
@@ -3439,12 +3469,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864000323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 82724278}
-  m_RootOrder: 2
+  m_Father: {fileID: 303195041}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1869654403
 PrefabInstance:
