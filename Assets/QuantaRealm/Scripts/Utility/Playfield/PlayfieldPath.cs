@@ -32,6 +32,7 @@ public class PlayfieldPath : MonoBehaviour
     public List<Vector3> thisNodePos;
     //public List<SpawnerAtTimeProperty> spawnerAtTimeProperties;
 
+    int spawnCount=0;
     public List<Vector3> NodePos
     {
         get
@@ -64,19 +65,12 @@ public class PlayfieldPath : MonoBehaviour
 
     public void Spawn()
     {
-        foreach(var s in StageEnemyProperties)
-        {
-            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
-            es.transform.localPosition = s.spawnPlayfieldPosition;
-            /*switch(s.enemyMoveType)
-            {
-                case EnemyMoveEnum.Sinusoidal:
-                    es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
-                    break;
-            }*/
-            es.gameObject.SetActive(true);
-            StartCoroutine(es.Spawn(s.name, s.spawnNumber, s.spawnTime));
-        }
+        var s = StageEnemyProperties[spawnCount];
+        EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
+        es.transform.localPosition = s.spawnPlayfieldPosition;
+        es.gameObject.SetActive(true);
+        StartCoroutine(es.Spawn(s.name, s.spawnNumber, s.spawnTime));
+        spawnCount++;
     }
 
     void OnDrawGizmos()

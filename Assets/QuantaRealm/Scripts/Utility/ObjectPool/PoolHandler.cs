@@ -34,12 +34,20 @@ public class PoolHandler : MonoBehaviour
             pools.Add(property.name, property.poolTransform);
             defaultSpawnedObjects.Add(property.name, property.defaultSpawnedObject);
         }
+
+        foreach (var o in poolProperties)
+        {
+            if (o.defaultSpawnedObject != null && o.poolTransform != null)
+            {
+                Instantiate(o.defaultSpawnedObject, o.poolTransform).SetActive(false);
+            }
+        }
     }
 
-    public GameObject SpawnNewObject(string keyword, bool activateInHierarchy)
+    GameObject SpawnNewObject(string keyword)
     {
         GameObject output = Instantiate(defaultSpawnedObjects[keyword], Vector3.zero, Quaternion.identity, pools[keyword]);
-        output.SetActive(activateInHierarchy);
+        output.SetActive(false);
         return output;
     }
 
@@ -59,11 +67,18 @@ public class PoolHandler : MonoBehaviour
                     return output;
                 }
             }
-            return SpawnNewObject(poolName, activateInHierarchy);
+            return SpawnNewObject(poolName);
         }
         else
         {
-            return SpawnNewObject(poolName, activateInHierarchy);
+            return SpawnNewObject(poolName);
         }
+    }
+
+    public GameObject RequestObject(string poolName, bool activateInHierarchy, Vector3 playfieldPosition)
+    {
+        PlayfieldObject a = RequestObject(poolName, activateInHierarchy).GetComponent<PlayfieldObject>();
+        a.RelativePos = playfieldPosition;
+        return a.gameObject;
     }
 }

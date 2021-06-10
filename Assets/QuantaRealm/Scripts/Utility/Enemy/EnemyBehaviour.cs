@@ -20,7 +20,6 @@ public class EnemyBehaviour : PlayfieldObject
     public void Reset()
     {
         timer = 0;
-        transform.localPosition = Vector3.zero;
     }
 
     public void OnTriggerEnter(Collider other)

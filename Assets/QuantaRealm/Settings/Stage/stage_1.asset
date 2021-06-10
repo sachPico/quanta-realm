@@ -29,4 +29,13 @@ MonoBehaviour:
       paths: []
     spawnTime: 1
     spawnNumber: 5
-    spawnPlayfieldPosition: {x: 30, y: 0, z: 0}
+    spawnPlayfieldPosition: {x: 60, y: 0, z: 0}
+  - name: PK001
+    enemyMoveType: 1
+    enemy: 0
+    spawnType: 1
+    spawnPath:
+      paths: []
+    spawnTime: 1
+    spawnNumber: 5
+    spawnPlayfieldPosition: {x: 60, y: 10, z: 0}

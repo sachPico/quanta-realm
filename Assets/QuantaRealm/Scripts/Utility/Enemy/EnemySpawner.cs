@@ -8,10 +8,8 @@ public class EnemySpawner : MonoBehaviour
     {
         for(int i=0; i<spawnNumber; i++)
         {
-            EnemyBehaviour eb = PoolHandler.instance.RequestObject(enemyKeyword, false).GetComponent<EnemyBehaviour>();
-            Debug.Break();
+            EnemyBehaviour eb = PoolHandler.instance.RequestObject(enemyKeyword, false, transform.localPosition).GetComponent<EnemyBehaviour>();
             eb.Reset();
-            eb.relativePos = transform.localPosition;
             eb.gameObject.SetActive(true);
             yield return new WaitForSeconds(interval);
         }
