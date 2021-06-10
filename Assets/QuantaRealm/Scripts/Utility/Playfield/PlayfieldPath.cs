@@ -32,7 +32,7 @@ public class PlayfieldPath : MonoBehaviour
     public List<Vector3> thisNodePos;
     //public List<SpawnerAtTimeProperty> spawnerAtTimeProperties;
 
-    public List<Vector3> nodePos
+    public List<Vector3> NodePos
     {
         get
         {
@@ -40,7 +40,7 @@ public class PlayfieldPath : MonoBehaviour
         }
     }
 
-    public AnimationClip stageAnimation
+    public AnimationClip StageAnimation
     {
         get
         {
@@ -48,7 +48,7 @@ public class PlayfieldPath : MonoBehaviour
         }
     }
 
-    public StageEnemyProperties[] stageEnemyProperties
+    public StageEnemyProperties[] StageEnemyProperties
     {
         get
         {
@@ -56,44 +56,39 @@ public class PlayfieldPath : MonoBehaviour
         }
     }
 
-    int spawnCount=0;
-
     void Start()
     {
-        GetComponent<Animation>().clip = stageAnimation;
+        GetComponent<Animation>().clip = StageAnimation;
         GetComponent<Animation>().Play("stage1_a");
     }
 
     public void Spawn()
     {
-        //Spawns EnemySpawner
-        foreach(var s in stageEnemyProperties)
+        foreach(var s in StageEnemyProperties)
         {
-            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner").GetComponent<EnemySpawner>();
+            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
             es.transform.localPosition = s.spawnPlayfieldPosition;
-            switch(s.enemyMoveType)
+            /*switch(s.enemyMoveType)
             {
                 case EnemyMoveEnum.Sinusoidal:
                     es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
                     break;
-            }
+            }*/
             es.gameObject.SetActive(true);
-            //Spawn time should be non-zero
-            StartCoroutine(es.Spawn(s.name, s.spawnNumber, s.spawnTime, 0, 0, 0));
+            StartCoroutine(es.Spawn(s.name, s.spawnNumber, s.spawnTime));
         }
-        spawnCount++;
     }
 
     void OnDrawGizmos()
     {
-        EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(stageAnimation);
+        EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(StageAnimation);
         Vector3 squareGizmosCenter = Vector3.zero;
-        foreach(var esp in stageEnemyProperties)
+        foreach(var esp in StageEnemyProperties)
         {
             Gizmos.color = Color.green;
-            squareGizmosCenter.x = AnimationUtility.GetEditorCurve(stageAnimation, ecb[0]).Evaluate(esp.spawnTime);
-            squareGizmosCenter.y = AnimationUtility.GetEditorCurve(stageAnimation, ecb[1]).Evaluate(esp.spawnTime);
-            squareGizmosCenter.z = AnimationUtility.GetEditorCurve(stageAnimation, ecb[2]).Evaluate(esp.spawnTime);
+            squareGizmosCenter.x = AnimationUtility.GetEditorCurve(StageAnimation, ecb[0]).Evaluate(esp.spawnTime);
+            squareGizmosCenter.y = AnimationUtility.GetEditorCurve(StageAnimation, ecb[1]).Evaluate(esp.spawnTime);
+            squareGizmosCenter.z = AnimationUtility.GetEditorCurve(StageAnimation, ecb[2]).Evaluate(esp.spawnTime);
 
             //Bisa dibikin Gizmos.DrawCube aja g sih
             //Draw upper border
@@ -116,6 +111,6 @@ public class PlayfieldPath : MonoBehaviour
 
     void OnValidate()
     {
-        thisNodePos = nodePos;
+        thisNodePos = NodePos;
     }
 }

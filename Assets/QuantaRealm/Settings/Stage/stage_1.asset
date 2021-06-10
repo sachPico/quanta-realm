@@ -27,6 +27,6 @@ MonoBehaviour:
     spawnType: 1
     spawnPath:
       paths: []
-    spawnTime: 3
+    spawnTime: 1
     spawnNumber: 5
-    spawnPlayfieldPosition: {x: 25, y: 0, z: 0}
+    spawnPlayfieldPosition: {x: 30, y: 0, z: 0}

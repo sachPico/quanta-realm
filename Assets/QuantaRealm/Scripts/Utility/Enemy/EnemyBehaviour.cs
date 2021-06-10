@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBehaviour : PlayfieldObject
 {
-    public EnemyMoveBase enemyMoveBehaviour;
     public int health;
     public int itemSpawn;
     public float timer = 0;
@@ -59,7 +58,7 @@ public class EnemyBehaviour : PlayfieldObject
         PlayfieldObject qbe;
         for (int i = 0; i < spawnNumber; i++)
         {
-            qbe = PoolHandler.instance.RequestObject(keyword).GetComponent<PlayfieldObject>();
+            qbe = PoolHandler.instance.RequestObject(keyword, true).GetComponent<PlayfieldObject>();
             qbe.relativePos = relativePos + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
             qbe.gameObject.SetActive(true);
         }

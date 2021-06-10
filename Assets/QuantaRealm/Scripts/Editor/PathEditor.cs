@@ -16,11 +16,11 @@ public class PathEditor : Editor
 
         if(guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.control)
         {
-            if(_playfieldPath.nodePos.Count > 0)
+            if(_playfieldPath.NodePos.Count > 0)
             {
-                mousePos.y=_playfieldPath.nodePos[_playfieldPath.nodePos.Count-1].y;
+                mousePos.y=_playfieldPath.NodePos[_playfieldPath.NodePos.Count-1].y;
             }
-            _playfieldPath.nodePos.Add(mousePos);
+            _playfieldPath.NodePos.Add(mousePos);
         }
     }
 
@@ -28,77 +28,77 @@ public class PathEditor : Editor
     {
         Event guiEvent = Event.current;
         Handles.color = Color.black;
-        Handles.DrawAAPolyLine(_playfieldPath.nodePos.ToArray());
+        Handles.DrawAAPolyLine(_playfieldPath.NodePos.ToArray());
         
-        for (int i = 0; i < _playfieldPath.nodePos.Count; i++)
+        for (int i = 0; i < _playfieldPath.NodePos.Count; i++)
         {
             Handles.color = Color.white;
-            nodePos = Handles.FreeMoveHandle(i + 200, _playfieldPath.nodePos[i], Quaternion.identity, 20f, Vector3.zero, Handles.SphereHandleCap);
+            nodePos = Handles.FreeMoveHandle(i + 200, _playfieldPath.NodePos[i], Quaternion.identity, 20f, Vector3.zero, Handles.SphereHandleCap);
             if (guiEvent.button == 0 && GUIUtility.hotControl == i + 200)
             {
-                _playfieldPath.nodePos[i] = nodePos;
+                _playfieldPath.NodePos[i] = nodePos;
             }
         }
     }
 
     void AdjustAnimationClip()
     {
-        Keyframe[] newKeyframe = new Keyframe[_playfieldPath.nodePos.Count];
-        EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation);
+        Keyframe[] newKeyframe = new Keyframe[_playfieldPath.NodePos.Count];
+        EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(_playfieldPath.StageAnimation);
         
         //Handles Playfield's locomotion adjustment in AnimationClip
         for(int i=0; i<newKeyframe.Length; i++)
         {
-            newKeyframe[i].value = _playfieldPath.nodePos[i].x;
+            newKeyframe[i].value = _playfieldPath.NodePos[i].x;
             if(i > 0)
             {
-                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.nodePos[i] - _playfieldPath.nodePos[i-1])) / _playfieldPath.maxSpeed;
+                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.NodePos[i] - _playfieldPath.NodePos[i-1])) / _playfieldPath.maxSpeed;
             }
             else
             {
                 newKeyframe[i].time = 0;
             }
         }
-        AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[0], new AnimationCurve(newKeyframe));
+        AnimationUtility.SetEditorCurve(_playfieldPath.StageAnimation, ecb[0], new AnimationCurve(newKeyframe));
 
         for(int i=0; i<newKeyframe.Length; i++)
         {
-            newKeyframe[i].value = _playfieldPath.nodePos[i].y;
+            newKeyframe[i].value = _playfieldPath.NodePos[i].y;
             if(i > 0)
             {
-                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.nodePos[i] - _playfieldPath.nodePos[i-1])) / _playfieldPath.maxSpeed;
+                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.NodePos[i] - _playfieldPath.NodePos[i-1])) / _playfieldPath.maxSpeed;
             }
             else
             {
                 newKeyframe[i].time = 0;
             }
         }
-        AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[1], new AnimationCurve(newKeyframe));
+        AnimationUtility.SetEditorCurve(_playfieldPath.StageAnimation, ecb[1], new AnimationCurve(newKeyframe));
 
         for(int i=0; i<newKeyframe.Length; i++)
         {
-            newKeyframe[i].value = _playfieldPath.nodePos[i].z;
+            newKeyframe[i].value = _playfieldPath.NodePos[i].z;
             if(i > 0)
             {
-                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.nodePos[i] - _playfieldPath.nodePos[i-1])) / _playfieldPath.maxSpeed;
+                newKeyframe[i].time = newKeyframe[i-1].time + (Vector3.Magnitude(_playfieldPath.NodePos[i] - _playfieldPath.NodePos[i-1])) / _playfieldPath.maxSpeed;
             }
             else
             {
                 newKeyframe[i].time = 0;
             }
         }
-        AnimationUtility.SetEditorCurve(_playfieldPath.stageAnimation, ecb[2], new AnimationCurve(newKeyframe));
+        AnimationUtility.SetEditorCurve(_playfieldPath.StageAnimation, ecb[2], new AnimationCurve(newKeyframe));
 
 
         //Handles EnemySpawner adjustment in AnimationClip
         List<AnimationEvent> ae = new List<AnimationEvent>();
-        for(int j=0; j<_playfieldPath.stageEnemyProperties.Length; j++)
+        for(int j=0; j<_playfieldPath.StageEnemyProperties.Length; j++)
         {
             ae.Add(new AnimationEvent());
             ae[j].functionName = "Spawn";
-            ae[j].time = _playfieldPath.stageEnemyProperties[j].spawnTime;
+            ae[j].time = _playfieldPath.StageEnemyProperties[j].spawnTime;
         }
-        AnimationUtility.SetAnimationEvents(_playfieldPath.stageAnimation, ae.ToArray());
+        AnimationUtility.SetAnimationEvents(_playfieldPath.StageAnimation, ae.ToArray());
     }
 
     public override void OnInspectorGUI()
@@ -107,7 +107,7 @@ public class PathEditor : Editor
 
         if (GUILayout.Button("Check Curve Bindings"))
         {
-            foreach(var b in AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation))
+            foreach(var b in AnimationUtility.GetCurveBindings(_playfieldPath.StageAnimation))
             {
                 Debug.Log(b.propertyName);
             }

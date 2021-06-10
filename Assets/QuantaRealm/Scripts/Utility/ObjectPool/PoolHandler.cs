@@ -36,14 +36,14 @@ public class PoolHandler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnNewObject(string keyword)
+    public GameObject SpawnNewObject(string keyword, bool activateInHierarchy)
     {
         GameObject output = Instantiate(defaultSpawnedObjects[keyword], Vector3.zero, Quaternion.identity, pools[keyword]);
-        output.SetActive(false);
+        output.SetActive(activateInHierarchy);
         return output;
     }
 
-    public GameObject RequestObject(string poolName)
+    public GameObject RequestObject(string poolName, bool activateInHierarchy)
     {
         GameObject output;
         // Debug.Log(pools[poolName].hierarchyCount);
@@ -55,15 +55,15 @@ public class PoolHandler : MonoBehaviour
                 if(!pools[poolName].GetChild(i).gameObject.activeInHierarchy)
                 {
                     output = pools[poolName].GetChild(i).gameObject;
-                    output.SetActive(false);
+                    output.SetActive(activateInHierarchy);
                     return output;
                 }
             }
-            return SpawnNewObject(poolName);
+            return SpawnNewObject(poolName, activateInHierarchy);
         }
         else
         {
-            return SpawnNewObject(poolName);
+            return SpawnNewObject(poolName, activateInHierarchy);
         }
     }
 }
