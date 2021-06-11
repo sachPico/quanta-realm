@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : PlayfieldObject
 {
     public int health;
-    public int itemSpawn;
+    public float speed;
     public float timer = 0;
 
     //For movement parameter
@@ -66,7 +66,7 @@ public class EnemyBehaviour : PlayfieldObject
 
     protected override void UpdateRelativePos()
     {
-        relativePos += Vector3.left * Time.fixedDeltaTime * 30f;
+        relativePos += Vector3.left * Time.fixedDeltaTime * speed;
         base.UpdateRelativePos();
     }
 

@@ -21,7 +21,7 @@ MonoBehaviour:
     enemyGUIIconPath: popcorn_a
   - enemyName: PK002
     enemyType: 1
-    enemyPrefab: {fileID: 8949935781818369876, guid: 161acf649378b4244a2cd18e4c22fbd6,
+    enemyPrefab: {fileID: 4149641555810401426, guid: d8003a1f963b51f4e8ba15f6fa9a4f2d,
       type: 3}
     enemyGUIIcon: {fileID: 2800000, guid: c8afaca0f7f7212408fa1bb6fa1493d1, type: 3}
     enemyGUIIconPath: popcorn_b

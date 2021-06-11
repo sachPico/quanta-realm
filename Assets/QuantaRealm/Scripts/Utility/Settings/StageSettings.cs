@@ -11,11 +11,21 @@ public class StageEnemyProperties
 {
     [HideInInspector]
     public string name;
+    [SerializeField]
+    public Spawn[] spawns;
+    public float spawnTime;
+}
+
+[Serializable]
+public struct Spawn
+{
+    [HideInInspector]
+    public string name;
     public EnemyMoveEnum enemyMoveType;
     public EnemyType enemy;
     public SpawnType spawnType;
     public SpawnPath spawnPath;
-    public float spawnTime;
+    public float spawnerTime;
     public int spawnNumber;
     public Vector3 spawnPlayfieldPosition;
 }
@@ -39,7 +49,11 @@ public class StageSettings : ScriptableObject
     {
         for(int i=0; i<stageEnemyProperties.Length; i++)
         {
-            stageEnemyProperties[i].name = stageEnemyProperties[i].enemy.ToString();
+            for(int k=0; k < stageEnemyProperties[i].spawns.Length; k++)
+            {
+                stageEnemyProperties[i].name = i.ToString();
+                stageEnemyProperties[i].spawns[k].name = stageEnemyProperties[i].spawns[k].enemy.ToString();
+            }
         }
     }
 }

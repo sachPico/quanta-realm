@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {x: 0, y: 0, z: 0}
   relativePos: {x: 0, y: 0, z: 0}
-  health: 5
-  itemSpawn: 0
+  health: 10
+  speed: 10
   timer: 0
   initialSpawnPoint: {x: 0, y: 0, z: 0}
   smallQbeFragSpawnNumber: 8
