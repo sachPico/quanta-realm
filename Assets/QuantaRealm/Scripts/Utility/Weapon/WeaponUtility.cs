@@ -116,7 +116,7 @@ public class WeaponUtility : MonoBehaviour
 
     void Shoot(string poolName, Vector3 spawnPosition, float spawnDirection)
     {
-        GameObject bp = PoolHandler.instance.RequestObject(poolName);
+        GameObject bp = PoolHandler.instance.RequestObject(poolName, true);
         bp.transform.position = spawnPosition;
         bp.transform.localEulerAngles = Vector3.forward * spawnDirection;
         bp.SetActive(true);

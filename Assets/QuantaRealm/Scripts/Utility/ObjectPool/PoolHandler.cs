@@ -34,6 +34,14 @@ public class PoolHandler : MonoBehaviour
             pools.Add(property.name, property.poolTransform);
             defaultSpawnedObjects.Add(property.name, property.defaultSpawnedObject);
         }
+
+        foreach(var o in poolProperties)
+        {
+            if(o.poolTransform != null && o.defaultSpawnedObject != null)
+            {
+                Instantiate(o.defaultSpawnedObject, o.poolTransform).SetActive(false);
+            }
+        }
     }
 
     public GameObject SpawnNewObject(string keyword, bool activateInHierarchy)
@@ -46,8 +54,7 @@ public class PoolHandler : MonoBehaviour
     public GameObject RequestObject(string poolName, bool activateInHierarchy)
     {
         GameObject output;
-        // Debug.Log(pools[poolName].hierarchyCount);
-        //Check in the pool
+        
         if(pools[poolName].childCount > 0)
         {
             for(int i=0; i<pools[poolName].childCount; i++)
@@ -65,5 +72,12 @@ public class PoolHandler : MonoBehaviour
         {
             return SpawnNewObject(poolName, activateInHierarchy);
         }
+    }
+
+    public GameObject RequestObject(string poolName, bool activateInHierarchy, Vector3 spawnPos)
+    {
+        PlayfieldObject o = RequestObject(poolName, activateInHierarchy).GetComponent<PlayfieldObject>();
+        o.RelativePos = spawnPos;
+        return o.gameObject;
     }
 }

@@ -26,19 +26,17 @@ public class DeltaHoriController : PlayfieldObject
 
     void GetMoveInput(InputAction.CallbackContext context)
     {
-        input = ((Vector3.right * speed * context.ReadValue<Vector2>().x) + (Vector3.up * speed * context.ReadValue<Vector2>().y)) * Time.fixedDeltaTime;
+        input = ((Vector3.right * context.ReadValue<Vector2>().x) + (Vector3.up * context.ReadValue<Vector2>().y));
+        input = input.normalized * speed * Time.fixedDeltaTime;
     }
 
     protected override void UpdateRelativePos()
     {
-        if(input.x != 0 || input.y != 0)
-        {
             relativePos += input;
             relativePos.x = Mathf.Clamp(relativePos.x, min.x, max.x);
             relativePos.y = Mathf.Clamp(relativePos.y, min.y, max.y);
 
             base.UpdateRelativePos();
-        }
     }
 
     void Start()
@@ -46,7 +44,7 @@ public class DeltaHoriController : PlayfieldObject
         ControlSetup();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         UpdateRelativePos();
         if(isShooting)
@@ -57,12 +55,9 @@ public class DeltaHoriController : PlayfieldObject
         {
             WeaponUtility.instance.ResetFireCounter();
         }
-    }
-
-    void LateUpdate()
-    {
-        Playfield.instance.qCamPivot.transform.localRotation = Quaternion.AngleAxis(Playfield.instance.camPivotRotateRange * (relativePos.y / max.y), Vector3.right);
-        Camera.main.transform.localPosition = Vector3.forward * (-35f + Playfield.instance.qCamPivot.GetChild(1).InverseTransformPoint(transform.position).z - Playfield.instance.tertiaryPivot.GetChild(1).InverseTransformPoint(transform.position).z);
+        float ratio = Mathf.Clamp( relativePos.y / 10f, -1f, 1f);
+        
+        Playfield.instance.qCamPivot.transform.localRotation = Quaternion.AngleAxis(-Playfield.instance.camPivotRotateRange * ratio, Vector3.right);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -56,27 +56,33 @@ public class PlayfieldPath : MonoBehaviour
         }
     }
 
+    int spawnCount = 0;
+
     void Start()
     {
         GetComponent<Animation>().clip = StageAnimation;
-        GetComponent<Animation>().Play("stage1_a");
+        //GetComponent<Animation>().Play("stage1_a");
     }
 
     public void Spawn()
     {
-        foreach(var s in StageEnemyProperties)
-        {
-            EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
-            es.transform.localPosition = s.spawnPlayfieldPosition;
-            /*switch(s.enemyMoveType)
+        var s = StageEnemyProperties[spawnCount];
+        
+            foreach(var t in s.spawns)
             {
-                case EnemyMoveEnum.Sinusoidal:
-                    es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
-                    break;
-            }*/
-            es.gameObject.SetActive(true);
-            StartCoroutine(es.Spawn(s.name, s.spawnNumber, s.spawnTime));
-        }
+                EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
+                es.transform.localPosition = t.spawnPlayfieldPosition;
+                /*switch(s.enemyMoveType)
+                {
+                    case EnemyMoveEnum.Sinusoidal:
+                        es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
+                        break;
+                }*/
+                es.gameObject.SetActive(true);
+                StartCoroutine(es.Spawn(t.name, t.spawnNumber, t.spawnerTime, t.spawnPlayfieldPosition));
+            }
+        
+        spawnCount++;
     }
 
     void OnDrawGizmos()
