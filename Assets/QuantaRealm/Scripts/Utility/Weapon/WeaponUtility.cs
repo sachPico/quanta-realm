@@ -110,6 +110,7 @@ public class WeaponUtility : MonoBehaviour
             qbeNumber++;
             qbeFragment -= 100;
             SetQbeNumberText(qbeNumber);
+            AudioSourcesHandler.PlaySFX((int)AudioType.UI, 0);
         }
         qbeFragmentBar.fillAmount = qbeFragment / 100f;
     }
@@ -147,6 +148,8 @@ public class WeaponUtility : MonoBehaviour
                 Shoot(activeMainWeaponType.weaponName, player.position + spawnWorldPos, spawners.direction);
             }
             mainFireCounter = 0;
+
+            AudioSourcesHandler.PlaySFX((int)AudioType.MAIN_SFX, 0);
         }
         else
         {
@@ -231,6 +234,7 @@ public class WeaponUtility : MonoBehaviour
                     break;
             }
             qbeNumber--;
+            AudioSourcesHandler.PlaySFX((int)AudioType.UI, 2);
             SetQbeNumberText(qbeNumber);
         }
         else

@@ -9,7 +9,7 @@ public class PathEditor : Editor
     public PlayfieldPath _playfieldPath;
     Vector3 nodePos;
 
-    void Edit()
+    /*void Edit()
     {
         Event guiEvent = Event.current;
         Vector3 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
@@ -99,44 +99,55 @@ public class PathEditor : Editor
             ae[j].time = _playfieldPath.StageEnemyProperties[j].spawnTime;
         }
         AnimationUtility.SetAnimationEvents(_playfieldPath.StageAnimation, ae.ToArray());
-    }
+    }*/
 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        if (GUILayout.Button("Check Curve Bindings"))
+        if(GUILayout.Button("Show identity quaternion"))
         {
-            foreach(var b in AnimationUtility.GetCurveBindings(_playfieldPath.StageAnimation))
-            {
-                Debug.Log(b.propertyName);
-            }
+            Debug.Log(new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w));
         }
 
-        if (GUILayout.Button("Adjust Curve Bindings"))
+        if (GUILayout.Button("Show X of identity quaternion"))
         {
-            AdjustAnimationClip();
+            Debug.Log(_playfieldPath.x);
         }
 
-        // if (GUILayout.Button("Output All Enemies Spawner Point"))
-        // {
-        //     foreach(var ep in _playfieldPath.spawnerAtTimeProperties)
-        //     {
-        //         Debug.Log(new Vector3
-        //         (
-        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[0]).Evaluate(ep.spawnTime),
-        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[1]).Evaluate(ep.spawnTime),
-        //             AnimationUtility.GetEditorCurve(_playfieldPath.stageAnimation, AnimationUtility.GetCurveBindings(_playfieldPath.stageAnimation)[2]).Evaluate(ep.spawnTime)
-        //         ));
-        //     }
-        // }
-        // if (GUILayout.Button("Get Animation Events"))
-        // {
-        //     foreach(var ae in AnimationUtility.GetAnimationEvents(_playfieldPath.stageAnimation))
-        //     {
-        //         Debug.Log(ae.functionName+": "+ae.time);
-        //     }
-        // }
+        if (GUILayout.Button("Show Y of identity quaternion"))
+        {
+            Debug.Log(_playfieldPath.y);
+        }
+
+        if (GUILayout.Button("Show Z of identity quaternion"))
+        {
+            Debug.Log(_playfieldPath.z);
+        }
+
+        if (GUILayout.Button("Show W of identity quaternion"))
+        {
+            Debug.Log(_playfieldPath.w);
+        }
+
+        if(GUILayout.Button("Set Player's forward direction"))
+        {
+            _playfieldPath.player.rotation = new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w);
+        }
+
+        /*
+                if (GUILayout.Button("Check Curve Bindings"))
+                {
+                    foreach(var b in AnimationUtility.GetCurveBindings(_playfieldPath.StageAnimation))
+                    {
+                        Debug.Log(b.propertyName);
+                    }
+                }
+
+                if (GUILayout.Button("Adjust Curve Bindings"))
+                {
+                    AdjustAnimationClip();
+                }*/
     }
 
     public void OnEnable()
@@ -146,7 +157,7 @@ public class PathEditor : Editor
 
     public void OnSceneGUI()
     {
-        Edit();
-        Draw();
+        /*Edit();
+        Draw();*/
     }
 }

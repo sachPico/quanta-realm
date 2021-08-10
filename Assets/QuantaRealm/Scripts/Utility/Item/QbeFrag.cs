@@ -14,11 +14,9 @@ public class QbeFrag : PlayfieldObject
         speed = Random.Range(1f, 5f);
     }
 
-    protected override void UpdateRelativePos()
+    void UpdateRelativePos()
     {
-        relativePos -= Vector3.right * speed * Time.fixedDeltaTime;
-
-        base.UpdateRelativePos();
+        RelativePos -= Vector3.right * speed * Time.fixedDeltaTime;
     }
 
     private void FixedUpdate()

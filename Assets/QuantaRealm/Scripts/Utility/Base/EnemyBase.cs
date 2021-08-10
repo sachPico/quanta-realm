@@ -27,7 +27,12 @@ public class EnemyBase : PlayfieldObject
             health -= WeaponUtility.instance.activeMainWeaponAttack;
             if (health < 0)
             {
+                AudioSourcesHandler.PlaySFX((int)AudioType.ENEMY_SFX, 1);
                 OnDestroyed();
+            }
+            else
+            {
+                AudioSourcesHandler.PlaySFX((int)AudioType.ENEMY_SFX, 0);
             }
             other.gameObject.SetActive(false);
         }

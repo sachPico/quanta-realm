@@ -25,20 +25,25 @@ public class PlayfieldPath : MonoBehaviour
         public SpawnerProperty[] enemySpawnerProperty;
     }
 
+    public Transform player;
     public float maxSpeed;
     public EnemyLibrary enemyLibrary;
     public StageSettings stageSettings;
 
-    public List<Vector3> thisNodePos;
-    //public List<SpawnerAtTimeProperty> spawnerAtTimeProperties;
+    [Header("Test Quaternion")]
+    public float x;
+    public float y;
+    public float z;
+    public float w;
+    public float gizmosLineLength;
 
-    public List<Vector3> NodePos
+    /*public List<Vector3> NodePos
     {
         get
         {
             return stageSettings.nodePos;
         }
-    }
+    }*/
 
     public AnimationClip StageAnimation
     {
@@ -61,7 +66,7 @@ public class PlayfieldPath : MonoBehaviour
     void Start()
     {
         GetComponent<Animation>().clip = StageAnimation;
-        //GetComponent<Animation>().Play("stage1_a");
+        GetComponent<Animation>().Play("stage1_b");
     }
 
     public void Spawn()
@@ -87,7 +92,10 @@ public class PlayfieldPath : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(StageAnimation);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(w, y, z) * gizmosLineLength);
+
+        /*EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(StageAnimation);
         Vector3 squareGizmosCenter = Vector3.zero;
         foreach(var esp in StageEnemyProperties)
         {
@@ -112,11 +120,11 @@ public class PlayfieldPath : MonoBehaviour
             //     //Gizmos.DrawSphere(squareGizmosCenter + sp.spawnerPosition, 2f);
             //     Gizmos.DrawIcon(squareGizmosCenter + sp.spawnerPosition, enemyLibrary.enemyLibrary[(int)esp.enemyType].enemyGUIIconPath, false);
             // }
-        }
+        }*/
     }
 
-    void OnValidate()
+    private void FixedUpdate()
     {
-        thisNodePos = NodePos;
+        transform.position += transform.right * maxSpeed * Time.fixedDeltaTime;
     }
 }

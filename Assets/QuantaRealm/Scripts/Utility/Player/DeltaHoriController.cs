@@ -30,13 +30,18 @@ public class DeltaHoriController : PlayfieldObject
         input = input.normalized * speed * Time.fixedDeltaTime;
     }
 
-    protected override void UpdateRelativePos()
+    void UpdateRelativePos()
     {
-            relativePos += input;
-            relativePos.x = Mathf.Clamp(relativePos.x, min.x, max.x);
-            relativePos.y = Mathf.Clamp(relativePos.y, min.y, max.y);
+        relativePos.x = Mathf.Clamp(RelativePos.x, min.x, max.x);
+        relativePos.y = Mathf.Clamp(RelativePos.y, min.y, max.y);
 
-            base.UpdateRelativePos();
+        RelativePos = new Vector3(Mathf.Clamp(RelativePos.x + input.x, min.x, max.x), Mathf.Clamp(relativePos.y + input.y, min.y, max.y), 0);
+
+        /*if (relativePos.x > min.x || relativePos.x < max.x || relativePos.y > min.y || relativePos.y < max.y)
+        {
+            RelativePos += input;
+        }*/
+        
     }
 
     void Start()
@@ -44,10 +49,10 @@ public class DeltaHoriController : PlayfieldObject
         ControlSetup();
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         UpdateRelativePos();
-        if(isShooting)
+        if (isShooting)
         {
             WeaponUtility.instance.Shoot();
         }
@@ -55,9 +60,6 @@ public class DeltaHoriController : PlayfieldObject
         {
             WeaponUtility.instance.ResetFireCounter();
         }
-        float ratio = Mathf.Clamp( relativePos.y / 10f, -1f, 1f);
-        
-        Playfield.instance.qCamPivot.transform.localRotation = Quaternion.AngleAxis(-Playfield.instance.camPivotRotateRange * ratio, Vector3.right);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +67,7 @@ public class DeltaHoriController : PlayfieldObject
         if(other.CompareTag("Qbe"))
         {
             WeaponUtility.instance.QbeFragmentAdd(other.GetComponent<QbeFrag>().val);
+            AudioSourcesHandler.PlaySFX((int) AudioType.ITEM_SFX, 1);
             other.gameObject.SetActive(false);
         }
     }

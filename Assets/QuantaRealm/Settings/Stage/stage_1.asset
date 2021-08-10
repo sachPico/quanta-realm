@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: stage_1
   m_EditorClassIdentifier: 
   stageName: Spirograph - Blitzkrieg Amidst Void
-  stageAnimation: {fileID: 7400000, guid: da06e2ba04f7cca4da9f5491b78c12e7, type: 2}
+  stageAnimation: {fileID: 7400000, guid: 3f855766a82bae44198c6321eea0b145, type: 2}
   nodePos:
   - {x: -215, y: 0, z: 0}
   - {x: 50, y: 0, z: 0}

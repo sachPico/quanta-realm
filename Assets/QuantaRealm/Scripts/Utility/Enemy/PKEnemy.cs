@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PKEnemy : EnemyBase
 {
-    protected override void UpdateRelativePos()
+    void UpdateRelativePos()
     {
-        relativePos += Vector3.left * Time.fixedDeltaTime * speed;
-        base.UpdateRelativePos();
+        RelativePos += Vector3.left * Time.fixedDeltaTime * speed;
     }
 
     void FixedUpdate()

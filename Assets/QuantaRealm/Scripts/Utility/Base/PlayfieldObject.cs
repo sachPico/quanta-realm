@@ -11,15 +11,14 @@ public class PlayfieldObject : MonoBehaviour
 
     public Vector3 RelativePos
     {
+        get
+        {
+            return relativePos;
+        }
         set
         {
             relativePos = value;
             transform.position = Playfield.instance.playerPivot.TransformPoint(value);
         }
-    }
-
-    protected virtual void UpdateRelativePos()
-    {
-        transform.position = Playfield.instance.playerPivot.TransformPoint(relativePos);
     }
 }
