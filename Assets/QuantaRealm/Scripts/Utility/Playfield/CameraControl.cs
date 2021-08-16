@@ -53,7 +53,7 @@ public class CameraControl : MonoBehaviour
 
     void DeltaCamera()
     {
-        _ratio = Mathf.Clamp(target.RelativePos.y / 10f, -1f, 1f);
+        _ratio = Mathf.Clamp(target.RelativePos.y / 23f, -1f, 1f);
         targetValue = -Playfield.instance.camPivotRotateRange * _ratio;
         track.x = Mathf.SmoothDampAngle(track.x, targetValue, ref velocity, smoothDampTime);
         cameraTransform.localEulerAngles = track;

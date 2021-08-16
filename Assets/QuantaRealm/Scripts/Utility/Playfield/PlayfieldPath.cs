@@ -30,13 +30,6 @@ public class PlayfieldPath : MonoBehaviour
     public EnemyLibrary enemyLibrary;
     public StageSettings stageSettings;
 
-    [Header("Test Quaternion")]
-    public float x;
-    public float y;
-    public float z;
-    public float w;
-    public float gizmosLineLength;
-
     /*public List<Vector3> NodePos
     {
         get
@@ -92,9 +85,6 @@ public class PlayfieldPath : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(w, y, z) * gizmosLineLength);
-
         /*EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(StageAnimation);
         Vector3 squareGizmosCenter = Vector3.zero;
         foreach(var esp in StageEnemyProperties)

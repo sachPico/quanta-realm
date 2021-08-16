@@ -105,35 +105,35 @@ public class PathEditor : Editor
     {
         DrawDefaultInspector();
 
-        if(GUILayout.Button("Show identity quaternion"))
-        {
-            Debug.Log(new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w));
-        }
+        // if(GUILayout.Button("Show identity quaternion"))
+        // {
+        //     Debug.Log(new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w));
+        // }
 
-        if (GUILayout.Button("Show X of identity quaternion"))
-        {
-            Debug.Log(_playfieldPath.x);
-        }
+        // if (GUILayout.Button("Show X of identity quaternion"))
+        // {
+        //     Debug.Log(_playfieldPath.x);
+        // }
 
-        if (GUILayout.Button("Show Y of identity quaternion"))
-        {
-            Debug.Log(_playfieldPath.y);
-        }
+        // if (GUILayout.Button("Show Y of identity quaternion"))
+        // {
+        //     Debug.Log(_playfieldPath.y);
+        // }
 
-        if (GUILayout.Button("Show Z of identity quaternion"))
-        {
-            Debug.Log(_playfieldPath.z);
-        }
+        // if (GUILayout.Button("Show Z of identity quaternion"))
+        // {
+        //     Debug.Log(_playfieldPath.z);
+        // }
 
-        if (GUILayout.Button("Show W of identity quaternion"))
-        {
-            Debug.Log(_playfieldPath.w);
-        }
+        // if (GUILayout.Button("Show W of identity quaternion"))
+        // {
+        //     Debug.Log(_playfieldPath.w);
+        // }
 
-        if(GUILayout.Button("Set Player's forward direction"))
-        {
-            _playfieldPath.player.rotation = new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w);
-        }
+        // if(GUILayout.Button("Set Player's forward direction"))
+        // {
+        //     //_playfieldPath.player.rotation = new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w);
+        // }
 
         /*
                 if (GUILayout.Button("Check Curve Bindings"))
