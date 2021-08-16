@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class WeaponUtility : MonoBehaviour
 {
@@ -39,12 +40,14 @@ public class WeaponUtility : MonoBehaviour
 
     [Header("Weapon UI")]
     public Image cursor;
+    public TMP_Text mainWeaponIndicator;
     public Image mainWeaponBar;
     public Image mainWeaponMaxBar;
+    public TMP_Text subWeaponIndicator;
     public Image subWeaponBar;
     public Image subWeaponMaxBar;
     public Image qbeFragmentBar;
-    public Text qbeNumberText;
+    public TMP_Text qbeNumberText;
 
     [Header("Other")]
     public int activeMainWeaponAttack;
@@ -81,7 +84,7 @@ public class WeaponUtility : MonoBehaviour
         mainWeaponPower = Mathf.Clamp(mainWeaponPower + val, 0, maxMainWeaponPower);
         SetMainPowerRate(mainWeaponPower);
 
-        mainWeaponBar.fillAmount = mainWeaponPower / 10f;
+        mainWeaponBar.fillAmount = mainWeaponPower / 10f * 0.25f;
     }
 
     public void SubPowerChange(int val)
@@ -89,17 +92,17 @@ public class WeaponUtility : MonoBehaviour
         subWeaponPower = Mathf.Clamp(subWeaponPower + val, 0, maxSubWeaponPower);
         SetSubPowerRate(subWeaponPower);
 
-        subWeaponBar.fillAmount = subWeaponPower / 10f;
+        subWeaponBar.fillAmount = subWeaponPower / 10f * 0.25f;
     }
 
     public void MaxMainPowerExtend(int val)
     {
-        mainWeaponMaxBar.fillAmount = val / 10f;
+        mainWeaponMaxBar.fillAmount = val / 10f * 0.25f;
     }
 
     public void MaxSubPowerExtend(int val)
     {
-        subWeaponMaxBar.fillAmount = val / 10f;
+        subWeaponMaxBar.fillAmount = val / 10f * 0.25f;
     }
 
     public void QbeFragmentAdd(int val)
@@ -128,12 +131,18 @@ public class WeaponUtility : MonoBehaviour
         upgradeID += (int)context.ReadValue<float>();
         upgradeID = (int)Mathf.Repeat(upgradeID, 2);
 
-        switch (upgradeID)
+        SetWeaponUI(upgradeID);
+    }
+
+    private void SetWeaponUI(int value)
+    {
+        switch (value)
         {
             case 0:
-                cursor.transform.SetParent(mainWeaponBar.transform.parent, false); break;
+                //cursor.transform.SetParent(mainWeaponBar.transform.parent, false); break;
+                mainWeaponIndicator.alpha = 1f; subWeaponIndicator.alpha = .25f; break;
             case 1:
-                cursor.transform.SetParent(subWeaponBar.transform.parent, false); break;
+                mainWeaponIndicator.alpha = .25f; subWeaponIndicator.alpha = 1f; break;
         }
     }
 
@@ -275,6 +284,9 @@ public class WeaponUtility : MonoBehaviour
         MaxSubPowerExtend(0);
 
         qbeFragmentBar.fillAmount = 0f;
+
+        SetQbeNumberText(qbeNumber);
+        SetWeaponUI(upgradeID);
 
         if (mainWeaponID >= mainWeaponTypes.Length)
         {
