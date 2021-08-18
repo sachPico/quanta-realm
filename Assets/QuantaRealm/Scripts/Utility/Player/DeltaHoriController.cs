@@ -5,7 +5,22 @@ using UnityEngine.InputSystem;
 
 public class DeltaHoriController : PlayfieldObject
 {
-    public Vector2 min, max;
+    Vector2 Min
+    {
+        get
+        {
+            return Playfield.instance.min;
+        }
+    }
+
+    Vector2 Max
+    {
+        get
+        {
+            return Playfield.instance.max;
+        }
+    }
+
     [Range(1f,20f)]
     public float speed;
 
@@ -32,10 +47,10 @@ public class DeltaHoriController : PlayfieldObject
 
     void UpdateRelativePos()
     {
-        relativePos.x = Mathf.Clamp(RelativePos.x, min.x, max.x);
-        relativePos.y = Mathf.Clamp(RelativePos.y, min.y, max.y);
+        relativePos.x = Mathf.Clamp(RelativePos.x, Min.x, Max.x);
+        relativePos.y = Mathf.Clamp(RelativePos.y, Min.y, Max.y);
 
-        RelativePos = new Vector3(Mathf.Clamp(RelativePos.x + input.x, min.x, max.x), Mathf.Clamp(relativePos.y + input.y, min.y, max.y), 0);
+        RelativePos = new Vector3(Mathf.Clamp(RelativePos.x + input.x, Min.x, Max.x), Mathf.Clamp(relativePos.y + input.y, Min.y, Max.y), 0);
 
         /*if (relativePos.x > min.x || relativePos.x < max.x || relativePos.y > min.y || relativePos.y < max.y)
         {

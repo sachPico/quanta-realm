@@ -8,6 +8,7 @@ public class Playfield : MonoBehaviour
     public Transform qCamPivot;
     public Transform playerPivot;
     public float camPivotRotateRange;
+    public Vector2 min, max;
 
     void Awake()
     {

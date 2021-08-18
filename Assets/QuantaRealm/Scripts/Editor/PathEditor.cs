@@ -105,7 +105,7 @@ public class PathEditor : Editor
     {
         DrawDefaultInspector();
 
-        if(GUILayout.Button("Show identity quaternion"))
+        /*if(GUILayout.Button("Show identity quaternion"))
         {
             Debug.Log(new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w));
         }
@@ -133,7 +133,7 @@ public class PathEditor : Editor
         if(GUILayout.Button("Set Player's forward direction"))
         {
             _playfieldPath.player.rotation = new Quaternion(_playfieldPath.x, _playfieldPath.y, _playfieldPath.z, _playfieldPath.w);
-        }
+        }*/
 
         /*
                 if (GUILayout.Button("Check Curve Bindings"))

@@ -115,8 +115,8 @@ MonoBehaviour:
   health: 3
   speed: 15
   timer: 0
-  smallQbeFragSpawnNumber: 7
-  mediumQbeFragSpawnNumber: 1
+  smallQbeFragSpawnNumber: 4
+  mediumQbeFragSpawnNumber: 0
   largeQbeFragSpawnNumber: 0
   qbeSpawnNumber: 0
 --- !u!114 &313597365523463580

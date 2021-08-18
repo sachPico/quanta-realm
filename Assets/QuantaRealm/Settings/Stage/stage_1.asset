@@ -24,51 +24,41 @@ MonoBehaviour:
   - name: 0
     spawns:
     - name: PK001
-      enemyMoveType: 0
       enemy: 0
-      spawnType: 0
-      spawnPath:
-        paths: []
+      spawnType: 1
+      spawnPosition: 2
+      additionalAxisValue: -0.75
       spawnerTime: 1
       spawnNumber: 5
-      spawnPlayfieldPosition: {x: 30, y: 10, z: 0}
     - name: PK001
-      enemyMoveType: 0
       enemy: 0
-      spawnType: 0
-      spawnPath:
-        paths: []
+      spawnType: 1
+      spawnPosition: 2
+      additionalAxisValue: 0.75
       spawnerTime: 1
       spawnNumber: 5
-      spawnPlayfieldPosition: {x: 30, y: -10, z: 0}
     spawnTime: 1
   - name: 1
     spawns:
     - name: PK001
-      enemyMoveType: 0
       enemy: 0
-      spawnType: 0
-      spawnPath:
-        paths: []
+      spawnType: 1
+      spawnPosition: 2
+      additionalAxisValue: 0
       spawnerTime: 1
       spawnNumber: 5
-      spawnPlayfieldPosition: {x: 30, y: 0, z: 0}
     - name: PK002
-      enemyMoveType: 0
       enemy: 1
-      spawnType: 0
-      spawnPath:
-        paths: []
+      spawnType: 1
+      spawnPosition: 2
+      additionalAxisValue: 0.5
       spawnerTime: 1
       spawnNumber: 3
-      spawnPlayfieldPosition: {x: 30, y: 7.5, z: 0}
     - name: PK002
-      enemyMoveType: 0
       enemy: 1
-      spawnType: 0
-      spawnPath:
-        paths: []
+      spawnType: 1
+      spawnPosition: 2
+      additionalAxisValue: -0.5
       spawnerTime: 1
       spawnNumber: 3
-      spawnPlayfieldPosition: {x: 30, y: -7.5, z: 0}
     spawnTime: 1

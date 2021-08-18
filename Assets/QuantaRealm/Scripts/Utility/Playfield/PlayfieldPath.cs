@@ -9,7 +9,7 @@ public class PlayfieldPath : MonoBehaviour
     [System.Serializable]
     public struct SpawnerProperty
     {
-        public EnemyMoveEnum enemyMoveBehaviour;
+        /*public EnemyMoveEnum enemyMoveBehaviour;*/
         public Vector3 spawnerPosition;
         public int spawnNumber;
         public float spawnInterval;
@@ -29,13 +29,6 @@ public class PlayfieldPath : MonoBehaviour
     public float maxSpeed;
     public EnemyLibrary enemyLibrary;
     public StageSettings stageSettings;
-
-    [Header("Test Quaternion")]
-    public float x;
-    public float y;
-    public float z;
-    public float w;
-    public float gizmosLineLength;
 
     /*public List<Vector3> NodePos
     {
@@ -72,29 +65,48 @@ public class PlayfieldPath : MonoBehaviour
     public void Spawn()
     {
         var s = StageEnemyProperties[spawnCount];
-        
-            foreach(var t in s.spawns)
+        Vector3 spawnPosition = new Vector3();
+
+        foreach(var t in s.spawns)
+        {
+            switch(t.spawnPosition)
             {
-                EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
-                es.transform.localPosition = t.spawnPlayfieldPosition;
-                /*switch(s.enemyMoveType)
-                {
-                    case EnemyMoveEnum.Sinusoidal:
-                        es.spawnedEnemyMoveBehaviour = new SinusoidalMove();
-                        break;
-                }*/
-                es.gameObject.SetActive(true);
-                StartCoroutine(es.Spawn(t.name, t.spawnNumber, t.spawnerTime, t.spawnPlayfieldPosition));
+                case SpawnPosition.BottomCenter:
+                    spawnPosition.x = t.additionalAxisValue * Playfield.instance.max.x;
+                    spawnPosition.y = Playfield.instance.min.y;
+                    break;
+                case SpawnPosition.UpperCenter:
+                    spawnPosition.x = t.additionalAxisValue * Playfield.instance.max.x;
+                    spawnPosition.y = Playfield.instance.max.y;
+                    break;
+                case SpawnPosition.CenterLeft:
+                    spawnPosition.x = Playfield.instance.min.x;
+                    spawnPosition.y = t.additionalAxisValue * Playfield.instance.max.y;
+                    break;
+                case SpawnPosition.CenterRight:
+                    spawnPosition.x = Playfield.instance.max.x;
+                    spawnPosition.y = t.additionalAxisValue * Playfield.instance.max.y;
+                    break;
             }
+
+            switch(t.spawnType)
+            {
+                case SpawnType.Wave:
+                    EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
+                    es.transform.localPosition = spawnPosition;
+                    es.gameObject.SetActive(true);
+                    StartCoroutine(es.Spawn(t.name, t.spawnNumber, t.spawnerTime, spawnPosition));
+                    break;
+                case SpawnType.Single:
+                    break;
+            }
+        }
         
         spawnCount++;
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(w, y, z) * gizmosLineLength);
-
         /*EditorCurveBinding[] ecb = AnimationUtility.GetCurveBindings(StageAnimation);
         Vector3 squareGizmosCenter = Vector3.zero;
         foreach(var esp in StageEnemyProperties)

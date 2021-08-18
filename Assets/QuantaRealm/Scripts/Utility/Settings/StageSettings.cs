@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum SpawnType { Single, Wave};
-public enum EnemyMoveEnum{Sinusoidal, Straight};
+public enum SpawnPosition {UpperCenter, CenterLeft, CenterRight, BottomCenter};
 
 [Serializable]
 public class StageEnemyProperties
@@ -21,13 +21,18 @@ public struct Spawn
 {
     [HideInInspector]
     public string name;
-    public EnemyMoveEnum enemyMoveType;
     public EnemyType enemy;
     public SpawnType spawnType;
-    public SpawnPath spawnPath;
+    public SpawnPosition spawnPosition;
+    /// <summary>
+    /// By default, when you set SpawnPosition to UpperCenter or Bottom Center, the X-axis value will always be 0.
+    /// Use this parameter to set the X-axis value. Same goes when you set as CenterRight or CenterLeft, this time Y-axis value is 0.
+    /// </summary>
+    [Range(-1f, 1f)]
+    public float additionalAxisValue;
+    /*public SpawnPath spawnPath;*/
     public float spawnerTime;
     public int spawnNumber;
-    public Vector3 spawnPlayfieldPosition;
 }
 
 [Serializable]
