@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: stage_2
   m_EditorClassIdentifier: 
   stageName: Investigation - Fragment Recollection
+  stageAnimation: {fileID: 0}
+  nodePos: []
   stageEnemyProperties:
   - name: PK001
-    enemy: 0
-    spawnType: 1
-    spawnInterval: 0
-    spawnPlayfieldPosition: {x: 0, y: 0, z: 0}
+    spawns: []
+    spawnTime: 0

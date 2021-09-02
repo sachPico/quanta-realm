@@ -46,7 +46,7 @@ public class PlayfieldPath : MonoBehaviour
         }
     }
 
-    public StageEnemyProperties[] StageEnemyProperties
+    public List<StageEnemyProperties> StageEnemyProperties
     {
         get
         {
@@ -69,25 +69,7 @@ public class PlayfieldPath : MonoBehaviour
 
         foreach(var t in s.spawns)
         {
-            switch(t.spawnPosition)
-            {
-                case SpawnPosition.BottomCenter:
-                    spawnPosition.x = t.additionalAxisValue * Playfield.instance.max.x;
-                    spawnPosition.y = Playfield.instance.min.y;
-                    break;
-                case SpawnPosition.UpperCenter:
-                    spawnPosition.x = t.additionalAxisValue * Playfield.instance.max.x;
-                    spawnPosition.y = Playfield.instance.max.y;
-                    break;
-                case SpawnPosition.CenterLeft:
-                    spawnPosition.x = Playfield.instance.min.x;
-                    spawnPosition.y = t.additionalAxisValue * Playfield.instance.max.y;
-                    break;
-                case SpawnPosition.CenterRight:
-                    spawnPosition.x = Playfield.instance.max.x;
-                    spawnPosition.y = t.additionalAxisValue * Playfield.instance.max.y;
-                    break;
-            }
+            spawnPosition = t.spawnLocation;
 
             switch(t.spawnType)
             {
@@ -95,7 +77,7 @@ public class PlayfieldPath : MonoBehaviour
                     EnemySpawner es = PoolHandler.instance.RequestObject("EnemySpawner", true).GetComponent<EnemySpawner>();
                     es.transform.localPosition = spawnPosition;
                     es.gameObject.SetActive(true);
-                    StartCoroutine(es.Spawn(t.name, t.spawnNumber, t.spawnerTime, spawnPosition));
+                    StartCoroutine(es.Spawn(t.name, t.spawnNumber, t.spawnInterval, spawnPosition, t.enemyProperty));
                     break;
                 case SpawnType.Single:
                     break;

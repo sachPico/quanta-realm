@@ -21,7 +21,7 @@ public class DeltaHoriController : PlayfieldObject
         }
     }
 
-    [Range(1f,20f)]
+    [Range(1f,80f)]
     public float speed;
 
     public InputActionMap actionMap;

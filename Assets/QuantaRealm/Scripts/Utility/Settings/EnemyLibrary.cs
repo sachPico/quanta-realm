@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType { PK001, PK002 };
+public enum EnemyType { PK001, PK002, PK003};
 
 [System.Serializable]
 public class Enemy

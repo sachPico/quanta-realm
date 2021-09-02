@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Property
+{
+
+}
+
 public class EnemyBase : PlayfieldObject
 {
     public int health;
@@ -13,6 +18,8 @@ public class EnemyBase : PlayfieldObject
     public int mediumQbeFragSpawnNumber;
     public int largeQbeFragSpawnNumber;
     public int qbeSpawnNumber;
+
+    public Property enemyProperty;
 
     public void Reset()
     {

@@ -51,7 +51,7 @@ MonoBehaviour:
   health: 5
   speed: 10
   timer: 0
-  smallQbeFragSpawnNumber: 3
+  smallQbeFragSpawnNumber: 2
   mediumQbeFragSpawnNumber: 0
   largeQbeFragSpawnNumber: 0
   qbeSpawnNumber: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936d6db55b6f9644499051750bb970fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minShootRate: 0.25
+  minShootRate: 1
   maxShootRate: 5
 --- !u!65 &7502003720946164246
 BoxCollider:
@@ -81,7 +81,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.128479, y: 1.6448517, z: 1.5285656}
-  m_Center: {x: -0.5642395, y: 0.17411041, z: 0}
+  m_Center: {x: 0, y: 0.17411041, z: 0}
 --- !u!1 &7474768127768121379
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 2089274462072935828}
   - component: {fileID: 8977539877452439949}
   - component: {fileID: 8080069603521666139}
-  - component: {fileID: 5120483263123056000}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -108,13 +107,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7474768127768121379}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.50000024, y: 0, z: 0}
   m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4174026990346089512}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8977539877452439949
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,7 +121,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7474768127768121379}
-  m_Mesh: {fileID: -2432090755550338912, guid: 5ddd6b990a7d7304b99dc0de1c4c8910, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: d4f68fcac2de4944a8f5fe055ea20e54, type: 3}
 --- !u!23 &8080069603521666139
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142,7 +141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eabff2185f5a07c4cb421c578703fd4d, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,16 +163,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5120483263123056000
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7474768127768121379}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

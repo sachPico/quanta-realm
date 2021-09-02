@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082cd1e264463b7489acb12f83646c6c, type: 3}
+  m_Name: stage_1
+  m_EditorClassIdentifier: 
+  generalStageSetting: {fileID: 11400000, guid: 4b154007ed7bb9045a5c1412f9eae3a5,
+    type: 2}
+  stageName: Spirograph - Blitzkrieg Amidst Void
+  stageAnimation: {fileID: 7400000, guid: 3f855766a82bae44198c6321eea0b145, type: 2}
+  nodePos:
+  - {x: -215, y: 0, z: 0}
+  - {x: 50, y: 0, z: 0}
+  - {x: 139.63947, y: 0, z: -216.10184}
+  - {x: 260.62466, y: 0, z: -239.85698}
+  - {x: 568.9056, y: 0, z: -38.075123}
+  stageEnemyProperties:
+  - name: 0
+    spawns:
+    - name: PK003
+      enemy: 2
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: 20, z: 0}
+      enemyProperty:
+        id: 0
+      showInInspector: 1
+      spawnInterval: 1
+      spawnNumber: 3
+    - name: PK001
+      enemy: 0
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: 0, z: 0}
+      enemyProperty:
+        id: 1
+      showInInspector: 1
+      spawnInterval: 2
+      spawnNumber: 5
+    - name: PK003
+      enemy: 2
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: -20, z: 0}
+      enemyProperty:
+        id: 2
+      showInInspector: 0
+      spawnInterval: 1
+      spawnNumber: 3
+    spawnTime: 3
+  - name: 1
+    spawns:
+    - name: PK001
+      enemy: 0
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: 20, z: 0}
+      enemyProperty:
+        id: 3
+      showInInspector: 0
+      spawnInterval: 1
+      spawnNumber: 5
+    - name: PK003
+      enemy: 2
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: 0, z: 0}
+      enemyProperty:
+        id: 4
+      showInInspector: 0
+      spawnInterval: 0.5
+      spawnNumber: 8
+    - name: PK001
+      enemy: 0
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: -20, z: 0}
+      enemyProperty:
+        id: 5
+      showInInspector: 0
+      spawnInterval: 1
+      spawnNumber: 5
+    spawnTime: 10
+  references:
+    version: 1
+    00000000:
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 1
+        moveDirection: {x: -3, y: -2, z: 0}
+    00000001:
+      type: {class: Property, ns: , asm: Assembly-CSharp}
+    00000002:
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 1
+        moveDirection: {x: -3, y: 2, z: 0}
+    00000003:
+      type: {class: Property, ns: , asm: Assembly-CSharp}
+    00000004:
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 2
+        moveDirection: {x: -3, y: -3, z: 0}
+    00000005:
+      type: {class: Property, ns: , asm: Assembly-CSharp}
