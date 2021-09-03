@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8515081944323928171}
   - component: {fileID: 8028988549220898275}
   - component: {fileID: -7325613673807354987}
+  - component: {fileID: 1633063890283106457}
   m_Layer: 0
   m_Name: orange_bullet
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +119,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: 0
   bulletSpeed: 25
+--- !u!135 &1633063890283106457
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141891877702995720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936d6db55b6f9644499051750bb970fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minShootRate: 1
+  minShootRate: 3
   maxShootRate: 5
 --- !u!65 &7502003720946164246
 BoxCollider:
@@ -80,8 +80,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.128479, y: 1.6448517, z: 1.5285656}
-  m_Center: {x: 0, y: 0.17411041, z: 0}
+  m_Size: {x: 2.128479, y: 0.5853377, z: 1.5285656}
+  m_Center: {x: -0.99, y: 0.23334327, z: 0}
 --- !u!1 &7474768127768121379
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e94e6de6f7a05fd4cb567ae173dba43d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

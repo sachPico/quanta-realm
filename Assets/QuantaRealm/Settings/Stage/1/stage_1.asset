@@ -89,6 +89,32 @@ MonoBehaviour:
       spawnInterval: 1
       spawnNumber: 5
     spawnTime: 10
+  - name: 2
+    spawns:
+    - name: PK003
+      enemy: 2
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: 18, z: 0}
+      enemyProperty:
+        id: 6
+      showInInspector: 0
+      spawnInterval: 2
+      spawnNumber: 5
+    spawnTime: 21
+  - name: 3
+    spawns:
+    - name: PK003
+      enemy: 2
+      spawnType: 1
+      spawnPosition: 1
+      spawnLocation: {x: 44, y: -18, z: 0}
+      enemyProperty:
+        id: 7
+      showInInspector: 0
+      spawnInterval: 2
+      spawnNumber: 5
+    spawnTime: 23
   references:
     version: 1
     00000000:
@@ -112,3 +138,13 @@ MonoBehaviour:
         moveDirection: {x: -3, y: -3, z: 0}
     00000005:
       type: {class: Property, ns: , asm: Assembly-CSharp}
+    00000006:
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 2
+        moveDirection: {x: -3, y: -3, z: 0}
+    00000007:
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 2
+        moveDirection: {x: -3, y: 3, z: 0}
