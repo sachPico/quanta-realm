@@ -3,9 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[System.Serializable]
+public struct BezierPoints
+{
+    public List<Vector3> point;
+}
+
 public class Bezier : MonoBehaviour
 {
-    public Vector3[] anchorPoints;
+    [SerializeField]
+    public BezierPoints bezierPoints;
+
+    public bool visualize;
+
+    public Vector3 GetPoint (float t)
+    {
+        int segmentIndex = (int)t;
+        t = Mathf.Clamp01(t);
+        float oneMinusT = 1f - t;
+
+        return
+            oneMinusT * oneMinusT * oneMinusT * bezierPoints.point[0+segmentIndex] +
+            3f * oneMinusT * oneMinusT * t * bezierPoints.point[1 + segmentIndex] +
+            3f * oneMinusT * t * t * bezierPoints.point[2 + segmentIndex] +
+            t * t * t * bezierPoints.point[3 + segmentIndex];
+    }
+
+    public static Vector3 GetPoint(List<Vector3> bezierCurvePoints, float t)
+    {
+        int segmentIndex = (int)t;
+        t = t-segmentIndex;
+        float oneMinusT = 1f - t;
+
+        return
+            oneMinusT * oneMinusT * oneMinusT * bezierCurvePoints[0 + segmentIndex*3] +
+            3f * oneMinusT * oneMinusT * t * bezierCurvePoints[1 + segmentIndex*3] +
+            3f * oneMinusT * t * t * bezierCurvePoints[2 + segmentIndex*3] +
+            t * t * t * bezierCurvePoints[3 + segmentIndex*3];
+    }
 }
 
 
@@ -26,15 +61,6 @@ public class BezierEditor : Editor
 
     void Draw()
     {
-        for(int i=0; i<dst.anchorPoints.Length; i++)
-        {
-            Handles.color = Color.white;
-            dst.anchorPoints[i] = Handles.FreeMoveHandle(dst.anchorPoints[i], Quaternion.identity, .2f, Vector3.zero, Handles.SphereHandleCap);
-            Handles.color = Color.green;
-            if(i!=dst.anchorPoints.Length-1)
-            {
-                Handles.DrawLine(dst.anchorPoints[i], dst.anchorPoints[i + 1]);
-            }
-        }
+        SceneViewUtility.DrawBezier(dst.bezierPoints.point, true);
     }
 }

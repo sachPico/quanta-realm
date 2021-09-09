@@ -6,6 +6,7 @@ public class OocystProperties : Property
 {
     public float timeToAlterDirection;
     public Vector3 moveDirection;
+    public BezierPoints bezier;
 }
 
 public class Oocyst : EnemyBase
@@ -32,7 +33,7 @@ public class Oocyst : EnemyBase
 
     IEnumerator Turn()
     {
-        yield return new WaitForSeconds(((OocystProperties)enemyProperty).timeToAlterDirection);
+        /*yield return new WaitForSeconds(((OocystProperties)enemyProperty).timeToAlterDirection);
         Vector3 target = ((OocystProperties)enemyProperty).moveDirection;
         Debug.Log(target);
 
@@ -42,18 +43,30 @@ public class Oocyst : EnemyBase
             yield return null;
         }
         
-        velocity = Vector3.zero;
+        velocity = Vector3.zero;*/
+
+        List<Vector3> curvePoints = ((OocystProperties)enemyProperty).bezier.point;
+
+        float t = 0;
+        float maxT = curvePoints.Count / 3;
+
+        Debug.Log(maxT);
+
+        while(t<=maxT)
+        {
+            RelativePos = Bezier.GetPoint(curvePoints, t);
+            t += .05f * Time.fixedDeltaTime;
+            yield return null;
+        }
+
+        gameObject.SetActive(false);
+
         yield break;
     }
 
     void UpdateRelativePos()
     {
         RelativePos += dir.normalized * Time.fixedDeltaTime * speed;
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateRelativePos();
     }
 
     private void OnDisable()

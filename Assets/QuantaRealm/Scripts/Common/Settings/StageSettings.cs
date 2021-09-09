@@ -88,7 +88,28 @@ public class StageSettingsEditor : Editor
 {
     StageSettings dst;
     int index = 1;
+    int bezierToBeDisplayedCount = 0;
     bool[] showStageEnemyProperties;
+
+    List<BezierPoints> bezierToBeDisplayed = new List<BezierPoints>();
+
+    Vector3[] playfieldBound = new Vector3[4];
+
+    private void OnSceneGUI(SceneView sceneView)
+    {
+        if (bezierToBeDisplayed != null)
+        {
+            if (bezierToBeDisplayed.Count > 0)
+            {
+                for (int i = 0; i < bezierToBeDisplayed.Count; i++)
+                {
+                    SceneViewUtility.DrawBezier(bezierToBeDisplayed[i].point, false);
+                }
+            }
+        }
+
+        Handles.DrawSolidRectangleWithOutline(playfieldBound, new Color(1, 1, 1, .1f), Color.red);
+    }
 
     public override void OnInspectorGUI()
     {
@@ -124,6 +145,8 @@ public class StageSettingsEditor : Editor
         StageEnemyProperties sep = dst.stageEnemyProperties[index-1];
 
         sep.spawnTime = EditorGUILayout.FloatField("Spawn time", sep.spawnTime);
+
+        List<BezierPoints> tmpBezier = new List<BezierPoints>();
 
         for (int j = 0; j < sep.spawns.Count; j++)
         {
@@ -220,11 +243,72 @@ public class StageSettingsEditor : Editor
 
                     op.moveDirection = EditorGUILayout.Vector3Field("Next direction", op.moveDirection);
                     op.timeToAlterDirection = EditorGUILayout.FloatField("Time to alter direction", op.timeToAlterDirection);
+
+                    EditorGUILayout.Space(8f);
+
+                    //Start handling enemy's Bezier curve
+
+                    if (op.bezier.point != null)
+                    {
+                        if (op.bezier.point.Count <= 3)
+                        {
+                            op.bezier.point.Add(Vector3.zero);
+                            op.bezier.point.Add(Vector3.one * 1);
+                            op.bezier.point.Add(Vector3.one * 2);
+                            op.bezier.point.Add(Vector3.one * 3);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < op.bezier.point.Count; i++)
+                            {
+                                if(i==0)
+                                {
+                                    op.bezier.point[i] = sep.spawns[j].spawnLocation;
+                                }
+                                else
+                                {
+                                    op.bezier.point[i] = EditorGUILayout.Vector3Field("Point " + i, op.bezier.point[i]);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        op.bezier.point = new List<Vector3>();
+                        InitializeBezier(op.bezier.point);
+                    }
+
+                    if(GUILayout.Button("Add new anchor point"))
+                    {
+                        op.bezier.point.Add(op.bezier.point[op.bezier.point.Count - 4]);
+                        op.bezier.point.Add(op.bezier.point[op.bezier.point.Count - 3]);
+                        op.bezier.point.Add(op.bezier.point[op.bezier.point.Count - 2]);
+                    }
+
+                    if(GUILayout.Button("Remove last Bezier segment"))
+                    {
+                        for(int i=0; i<3; i++)
+                        {
+                            op.bezier.point.RemoveAt(op.bezier.point.Count - 1);
+                        }
+                    }
+
+                    if(GUILayout.Button("Reset Bezier"))
+                    {
+                        List<Vector3> points = new List<Vector3>();
+                        InitializeBezier(points);
+                        op.bezier.point = points;
+                    }
+
+                    tmpBezier.Add(op.bezier);
+
                     break;
             }
 
-            EditorGUILayout.Space(4f);
+            EditorGUILayout.Space(16f);
         }
+
+        bezierToBeDisplayed = tmpBezier;
 
         if (GUILayout.Button("Add Enemy"))
         {
@@ -275,6 +359,14 @@ public class StageSettingsEditor : Editor
         }
     }
 
+    void InitializeBezier(List<Vector3> newBezier)
+    {
+        newBezier.Add(Vector3.zero);
+        newBezier.Add(Vector3.one * 1);
+        newBezier.Add(Vector3.one * 2);
+        newBezier.Add(Vector3.one * 3);
+    }
+
     private void OnEnable()
     {
         dst = (StageSettings)target;
@@ -282,6 +374,18 @@ public class StageSettingsEditor : Editor
         UpdateFoldoutToggle();
 
         EditorUtility.SetDirty(dst);
+
+        playfieldBound[0] = new Vector3(dst.generalStageSetting.minStageBorder.x, dst.generalStageSetting.minStageBorder.y);
+        playfieldBound[1] = new Vector3(dst.generalStageSetting.minStageBorder.x, dst.generalStageSetting.maxStageBorder.y);
+        playfieldBound[2] = new Vector3(dst.generalStageSetting.maxStageBorder.x, dst.generalStageSetting.maxStageBorder.y);
+        playfieldBound[3] = new Vector3(dst.generalStageSetting.maxStageBorder.x, dst.generalStageSetting.minStageBorder.y);
+
+        SceneView.duringSceneGui += OnSceneGUI;
+    }
+
+    private void OnDisable()
+    {
+        SceneView.duringSceneGui -= OnSceneGUI;
     }
 
     void UpdateFoldoutToggle()

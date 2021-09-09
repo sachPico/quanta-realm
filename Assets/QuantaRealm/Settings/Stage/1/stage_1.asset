@@ -34,16 +34,16 @@ MonoBehaviour:
         id: 0
       showInInspector: 1
       spawnInterval: 1
-      spawnNumber: 3
-    - name: PK001
-      enemy: 0
+      spawnNumber: 5
+    - name: PK003
+      enemy: 2
       spawnType: 1
       spawnPosition: 1
       spawnLocation: {x: 44, y: 0, z: 0}
       enemyProperty:
         id: 1
-      showInInspector: 1
-      spawnInterval: 2
+      showInInspector: 0
+      spawnInterval: 1
       spawnNumber: 5
     - name: PK003
       enemy: 2
@@ -54,67 +54,8 @@ MonoBehaviour:
         id: 2
       showInInspector: 0
       spawnInterval: 1
-      spawnNumber: 3
-    spawnTime: 3
-  - name: 1
-    spawns:
-    - name: PK001
-      enemy: 0
-      spawnType: 1
-      spawnPosition: 1
-      spawnLocation: {x: 44, y: 20, z: 0}
-      enemyProperty:
-        id: 3
-      showInInspector: 0
-      spawnInterval: 1
       spawnNumber: 5
-    - name: PK003
-      enemy: 2
-      spawnType: 1
-      spawnPosition: 1
-      spawnLocation: {x: 44, y: 0, z: 0}
-      enemyProperty:
-        id: 4
-      showInInspector: 0
-      spawnInterval: 0.5
-      spawnNumber: 8
-    - name: PK001
-      enemy: 0
-      spawnType: 1
-      spawnPosition: 1
-      spawnLocation: {x: 44, y: -20, z: 0}
-      enemyProperty:
-        id: 5
-      showInInspector: 0
-      spawnInterval: 1
-      spawnNumber: 5
-    spawnTime: 10
-  - name: 2
-    spawns:
-    - name: PK003
-      enemy: 2
-      spawnType: 1
-      spawnPosition: 1
-      spawnLocation: {x: 44, y: 18, z: 0}
-      enemyProperty:
-        id: 6
-      showInInspector: 0
-      spawnInterval: 2
-      spawnNumber: 5
-    spawnTime: 21
-  - name: 3
-    spawns:
-    - name: PK003
-      enemy: 2
-      spawnType: 1
-      spawnPosition: 1
-      spawnLocation: {x: 44, y: -18, z: 0}
-      enemyProperty:
-        id: 7
-      showInInspector: 0
-      spawnInterval: 2
-      spawnNumber: 5
-    spawnTime: 23
+    spawnTime: 5
   references:
     version: 1
     00000000:
@@ -122,29 +63,34 @@ MonoBehaviour:
       data:
         timeToAlterDirection: 1
         moveDirection: {x: -3, y: -2, z: 0}
+        bezier:
+          point:
+          - {x: 44, y: 20, z: 0}
+          - {x: 28.585888, y: 20.013868, z: 0}
+          - {x: -1.3797598, y: -21.61869, z: 0}
+          - {x: -0.20080853, y: -39.945553, z: 0}
     00000001:
-      type: {class: Property, ns: , asm: Assembly-CSharp}
+      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
+      data:
+        timeToAlterDirection: 0
+        moveDirection: {x: 0, y: 0, z: 0}
+        bezier:
+          point:
+          - {x: 44, y: 0, z: 0}
+          - {x: 30.080172, y: -0.34416687, z: 0}
+          - {x: -0.8767109, y: -61.142124, z: 0}
+          - {x: 0.503994, y: -79.87319, z: 0}
     00000002:
       type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
       data:
-        timeToAlterDirection: 1
-        moveDirection: {x: -3, y: 2, z: 0}
-    00000003:
-      type: {class: Property, ns: , asm: Assembly-CSharp}
-    00000004:
-      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
-      data:
-        timeToAlterDirection: 2
-        moveDirection: {x: -3, y: -3, z: 0}
-    00000005:
-      type: {class: Property, ns: , asm: Assembly-CSharp}
-    00000006:
-      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
-      data:
-        timeToAlterDirection: 2
-        moveDirection: {x: -3, y: -3, z: 0}
-    00000007:
-      type: {class: OocystProperties, ns: , asm: Assembly-CSharp}
-      data:
-        timeToAlterDirection: 2
-        moveDirection: {x: -3, y: 3, z: 0}
+        timeToAlterDirection: 0
+        moveDirection: {x: 0, y: 0, z: 0}
+        bezier:
+          point:
+          - {x: 44, y: -20, z: 0}
+          - {x: 30.97055, y: -21.278114, z: 0}
+          - {x: 37.399456, y: 9.697361, z: 0}
+          - {x: 18.765522, y: 9.796726, z: 0}
+          - {x: 0.13158798, y: 9.896091, z: 0}
+          - {x: -37.159695, y: -13.071816, z: 0}
+          - {x: -28.62679, y: -42.46455, z: 0}
