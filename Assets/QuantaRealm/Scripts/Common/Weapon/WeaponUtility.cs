@@ -24,7 +24,7 @@ public class WeaponUtility : MonoBehaviour
         public int initialPoolSize;
     }
 
-    public Transform player;
+    public PlayfieldObject player;
     public WeaponType[] mainWeaponTypes;
     public WeaponType[] subWeaponTypes;
 
@@ -121,9 +121,13 @@ public class WeaponUtility : MonoBehaviour
     void Shoot(string poolName, Vector3 spawnPosition, float spawnDirection)
     {
         GameObject bp = PoolHandler.instance.RequestObject(poolName, true);
-        bp.transform.position = spawnPosition;
+        //bp.transform.position = spawnPosition;
         bp.transform.localEulerAngles = Vector3.forward * spawnDirection;
         bp.SetActive(true);
+
+        BulletProperty bulletProperty = bp.GetComponent<BulletProperty>();
+        bulletProperty.RelativePos = spawnPosition;
+        bulletProperty.Velocity = Vector3.right * 100f;
     }
 
     private void SetCursor(InputAction.CallbackContext context)
@@ -153,12 +157,13 @@ public class WeaponUtility : MonoBehaviour
             Vector3 spawnWorldPos;
             foreach (var spawners in activeMainWeaponType.spawner)
             {
-                spawnWorldPos = Playfield.instance.playerPivot.TransformVector(spawners.position);
-                Shoot(activeMainWeaponType.weaponName, player.position + spawnWorldPos, spawners.direction);
+                Shoot(activeMainWeaponType.weaponName, player.RelativePos + spawners.position, spawners.direction);
             }
             mainFireCounter = 0;
 
             AudioSourcesHandler.PlaySFX((int)AudioType.MAIN_SFX, 0);
+
+            DeltaHoriController.Instance.AddOverheat((mainWeaponPower+1) * StageManager.Instance.ambientHeatMultiplier * activeMainWeaponFireRate);
         }
         else
         {
@@ -173,10 +178,11 @@ public class WeaponUtility : MonoBehaviour
             Vector3 spawnWorldPos;
             foreach (var spawners in activeSubWeaponType.spawner)
             {
-                spawnWorldPos = Playfield.instance.playerPivot.TransformVector(spawners.position);
-                Shoot(activeSubWeaponType.weaponName, player.position + spawnWorldPos, spawners.direction);
+                Shoot(activeSubWeaponType.weaponName, player.RelativePos + spawners.position, spawners.direction);
             }
             subFireCounter = 0;
+
+            DeltaHoriController.Instance.AddOverheat((subWeaponPower+1) * StageManager.Instance.ambientHeatMultiplier * activeSubWeaponFireRate);
         }
         else
         {

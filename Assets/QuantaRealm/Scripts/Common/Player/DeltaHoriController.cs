@@ -5,6 +5,20 @@ using UnityEngine.InputSystem;
 
 public class DeltaHoriController : PlayfieldObject
 {
+    static DeltaHoriController instance;
+    public static DeltaHoriController Instance
+    { 
+        get
+        {
+            if(instance==null)
+            {
+                instance = FindObjectOfType<DeltaHoriController>();
+            }
+            return instance;
+        }
+    }
+
+
     Vector2 Min
     {
         get
@@ -24,10 +38,14 @@ public class DeltaHoriController : PlayfieldObject
     [Range(1f,80f)]
     public float speed;
 
+    public float overheatCounter = 0;
+    private int maxOverheat = 1000;
+
     public InputActionMap actionMap;
 
     public bool canMove = true;
     public bool canShoot = true;
+    public Collider enemyCollisionHandler;
 
     bool isShooting = false;
     Animation animation;
@@ -42,6 +60,16 @@ public class DeltaHoriController : PlayfieldObject
     public void ToggleCollider()
     {
         StartCoroutine(TogglingCollider());
+    }
+
+    public void AddOverheat(float _value)
+    {
+        overheatCounter = Mathf.Clamp(overheatCounter+_value, 0, maxOverheat);
+
+        //Debug.Log(_value);
+        //Debug.Log(overheatCounter);
+
+        PlayerManager.Overheat = overheatCounter;
     }
 
     void ControlSetup()
@@ -66,10 +94,14 @@ public class DeltaHoriController : PlayfieldObject
 
     void UpdateRelativePos()
     {
-        relativePos.x = Mathf.Clamp(RelativePos.x, Min.x, Max.x);
-        relativePos.y = Mathf.Clamp(RelativePos.y, Min.y, Max.y);
+        Vector3 r = RelativePos;
 
-        RelativePos = new Vector3(Mathf.Clamp(RelativePos.x + input.x, Min.x, Max.x), Mathf.Clamp(relativePos.y + input.y, Min.y, Max.y), 0);
+        r.x = Mathf.Clamp(RelativePos.x, Min.x, Max.x);
+        r.y = Mathf.Clamp(RelativePos.y, Min.y, Max.y);
+
+        RelativePos = r;
+
+        RelativePos = new Vector3(Mathf.Clamp(RelativePos.x + input.x, Min.x, Max.x), Mathf.Clamp(RelativePos.y + input.y, Min.y, Max.y), 0);
     }
 
     void Start()
@@ -78,6 +110,8 @@ public class DeltaHoriController : PlayfieldObject
         animation = GetComponent<Animation>();
         collider = GetComponent<Collider>();
         model = transform.GetChild(0).gameObject;
+        overheatCounter = 0;
+        PlayerManager.Overheat = overheatCounter;
     }
 
     void FixedUpdate()
@@ -92,26 +126,31 @@ public class DeltaHoriController : PlayfieldObject
             else
             {
                 WeaponUtility.instance.ResetFireCounter();
+
+                AddOverheat(-1f / StageManager.Instance.ambientHeatMultiplier);
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void InvokeGetQbe(Collider other)
     {
-        if(other.CompareTag("Qbe"))
+        if (other.CompareTag("Qbe"))
         {
             WeaponUtility.instance.QbeFragmentAdd(other.GetComponent<QbeFrag>().val);
-            AudioSourcesHandler.PlaySFX((int) AudioType.ITEM_SFX, 1);
+            AudioSourcesHandler.PlaySFX((int)AudioType.ITEM_SFX, 1);
             other.gameObject.SetActive(false);
         }
-        if(other.CompareTag("Enemy"))
+    }
+
+    public void InvokeShot(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
         {
-            Debug.Log("A");
             input = Vector3.zero;
             model.SetActive(false);
             canMove = false;
             canShoot = false;
-            collider.enabled = false;
+            other.enabled = false;
             StartCoroutine(Shot());
         }
     }
@@ -135,7 +174,7 @@ public class DeltaHoriController : PlayfieldObject
     IEnumerator TogglingCollider()
     {
         yield return new WaitForSeconds(3f);
-        collider.enabled = true;
+        enemyCollisionHandler.enabled = true;
         yield break;
     }
 }

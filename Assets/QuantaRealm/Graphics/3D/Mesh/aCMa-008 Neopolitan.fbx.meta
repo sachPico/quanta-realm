@@ -1,21 +1,33 @@
 fileFormatVersion: 2
-guid: 5c8d900c5db149343997851765049b37
+guid: 3f2c4c7fd2b5fd442be04cba81201635
 ModelImporter:
-  serializedVersion: 20101
-  internalIDToNameTable: []
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -3951906064524585399
+    second: aCMa-003 Neapolitan_LowDetail|_head_missile_coverAction
+  - first:
+      74: -433266387539022033
+    second: aCMa-003 Neapolitan_LowDetail|aCMa-003 NeapolitanAction
+  - first:
+      74: 3158183144500181729
+    second: aCMa-003 Neapolitan_LowDetail|aCMa-003 NeapolitanAction.001
+  - first:
+      74: -2537826612532363536
+    second: aCMa-003 Neapolitan_LowDetail|aCMa-003 NeapolitanAction.002
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Emission
-    second: {fileID: 2100000, guid: 0656e19b223d90543b1ad252b8f8a1da, type: 2}
+      name: _lamp
+    second: {fileID: 2100000, guid: 7c0d8e7f8827ce64381f5bce88686b6f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 5d935b44b695e824d84516e98a763fdb, type: 2}
+      name: _weapon_l
+    second: {fileID: 2100000, guid: 74f62ea3800c7fb4996eb725ea06d4f3, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -105,6 +117,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

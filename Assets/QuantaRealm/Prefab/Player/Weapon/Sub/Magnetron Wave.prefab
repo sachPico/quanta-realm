@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ffaaead8827f49bc1530e73e99ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {x: 0, y: 0, z: 0}
   attack: 1
   bulletSpeed: 100
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!65 &5007794706926408179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59,7 +61,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9009364, y: 1.9009364, z: 0.13888073}
+  m_Size: {x: 1.9009364, y: 4.3, z: 0.13888073}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5054717875792738507
 Rigidbody:

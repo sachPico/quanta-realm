@@ -11,7 +11,8 @@
                     "id": "eee07f45-2d32-40d0-8765-1c0bf755b71e",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Shoot",
@@ -19,7 +20,8 @@
                     "id": "ec5c8bc2-dd8e-4b43-ab60-1aaed5d0dda1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": "Hold",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Upgrade",
@@ -27,7 +29,8 @@
                     "id": "f02ade90-6d3d-4fb4-9fa7-030ced16e7a8",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SlotSelect",
@@ -35,7 +38,8 @@
                     "id": "053335ec-eb15-4b70-9513-a97ff8c46d46",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Bomb",
@@ -43,7 +47,8 @@
                     "id": "56fb0e2d-26dc-42a4-9d47-b8ca8fd6f4df",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -94,7 +99,7 @@
                 {
                     "name": "right",
                     "id": "77364eaf-aa2c-4d0c-b50e-c10c1d665978",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeddbe8f76f9838438720f8d273668ff, type: 3}
+  m_Name: stage_1o
+  m_EditorClassIdentifier: 
+  showOriginalInspector: 0
+  titleShow: 18
+  stageName: 1<sup><size=24> st</size></sup> record
+  stageDescription: the countermeasure of canisians sudden attack
+  stageLocation: lps-021ac, spinograph spatial territory
+  animationClip: {fileID: 7400000, guid: 167414752136fd242b3ff048861d7add, type: 2}
+  generalStageSettings: {fileID: 11400000, guid: 4b154007ed7bb9045a5c1412f9eae3a5,
+    type: 2}
+  enemyWaves:
+  - show: 1
+    spawnTime: 6
+    enemySpawns:
+    - show: 1
+      spawnNumber: 15
+      spawnInterval: 0.75
+      spawnMode: 0
+      minSpawnPosition: {x: 44, y: 20, z: 0}
+      maxSpawnPosition: {x: 44, y: -20, z: 0}
+      enemyID: 0
+  - show: 1
+    spawnTime: 12
+    enemySpawns:
+    - show: 1
+      spawnNumber: 10
+      spawnInterval: 0.25
+      spawnMode: 0
+      minSpawnPosition: {x: 44, y: 20, z: 0}
+      maxSpawnPosition: {x: 44, y: -20, z: 0}
+      enemyID: 0

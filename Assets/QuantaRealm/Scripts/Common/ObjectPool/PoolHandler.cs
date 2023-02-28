@@ -46,7 +46,7 @@ public class PoolHandler : MonoBehaviour
 
     public GameObject SpawnNewObject(string keyword, bool activateInHierarchy)
     {
-        GameObject output = Instantiate(defaultSpawnedObjects[keyword], Vector3.zero, Quaternion.identity, pools[keyword]);
+        GameObject output = Instantiate(defaultSpawnedObjects[keyword], Vector3.zero, defaultSpawnedObjects[keyword].transform.rotation, pools[keyword]);
         output.SetActive(activateInHierarchy);
         return output;
     }
@@ -72,6 +72,13 @@ public class PoolHandler : MonoBehaviour
         {
             return SpawnNewObject(poolName, activateInHierarchy);
         }
+    }
+
+    //Returns associated component from the requested object in pool
+    public T RequestObject<T>(string poolName, bool activateInHierarchy)
+    {
+        T obj = RequestObject(poolName, activateInHierarchy).GetComponent<T>();
+        return obj;
     }
 
     public GameObject RequestObject(string poolName, bool activateInHierarchy, Vector3 spawnPos)

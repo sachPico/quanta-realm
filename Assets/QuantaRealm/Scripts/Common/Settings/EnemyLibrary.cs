@@ -1,21 +1,46 @@
+using Sachet.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType { PK001, PK002, PK003};
-
 [System.Serializable]
-public class Enemy
+public struct EnemyItem
 {
-    public string enemyName;
-    public EnemyType enemyType;
-    public GameObject enemyPrefab;
-    public Texture2D enemyGUIIcon;
-    public string enemyGUIIconPath;
+    public string name;
+    public GameObject prefab;
 }
 
-[CreateAssetMenu(fileName = "EnemyLibrary", menuName = "Library/Enemy")]
+[CreateAssetMenu(fileName = "Amnisium", menuName = "EnemyLibrary")]
 public class EnemyLibrary : ScriptableObject
 {
-    public List<Enemy> enemyLibrary = new List<Enemy>();
+    static EnemyLibrary instance;
+
+    public static EnemyLibrary Instance
+    {
+        get
+        {
+            if(instance==null)
+            {
+                instance = Resources.Load<EnemyLibrary>("EnemyLibrary/EnemyLibrary");
+            }
+            return instance;
+        }
+    }
+
+    [SerializeField]
+    public List<EnemyItem> enemies = new List<EnemyItem>();
+
+    public string[] EnemyList
+    {
+        get
+        {
+            string[] result = new string[enemies.Count];
+            for(int i=0; i<enemies.Count; i++)
+            {
+                result[i] = enemies[i].name;
+            }
+            return result;
+        }
+    }
 }

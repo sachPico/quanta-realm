@@ -36,7 +36,7 @@ public class EnemyShoot : MonoBehaviour
             timer = 0;
 
             BulletProperty bp = PoolHandler.instance.RequestObject("DummyEnemyBullet", true).GetComponent<BulletProperty>();
-            Vector3 directionToPlayer = player.relativePos - playfieldObject.relativePos;
+            Vector3 directionToPlayer = player.RelativePos - playfieldObject.RelativePos;
             float direction = Mathf.Clamp(Mathf.Rad2Deg * Mathf.Atan2(directionToPlayer.y, directionToPlayer.x), -180f, 180f);
             bp.transform.position = transform.position;
             bp.transform.localEulerAngles = Vector3.forward * direction;

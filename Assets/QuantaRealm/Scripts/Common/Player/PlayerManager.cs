@@ -6,11 +6,23 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager instance;
+    static PlayerManager instance;
+    public static PlayerManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<PlayerManager>();
+            }
+            return instance;
+        }
+    }
 
     public TMP_Text livesText;
 
     public Image gameOverBackground;
+    public Image overheatDisplay;
     public TMP_Text gameOverText;
 
     int lives = 2;
@@ -19,27 +31,30 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
-            return instance.lives;
+            return Instance.lives;
         }
         set
         {
-            instance.lives = value;
-            instance.livesText.text = value.ToString();
+            Instance.lives = value;
+            Instance.livesText.text = value.ToString();
+        }
+    }
+
+    public static float Overheat
+    {
+        set
+        {
+            Instance.overheatDisplay.fillAmount = value / 1000f;
         }
     }
 
     public static void StartGameOverSequence()
     {
-        instance.StartCoroutine(instance.GameOverSequence());
+        Instance.StartCoroutine(Instance.GameOverSequence());
     }
 
     private void Start()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-
         Lives = 2;
 
         Color c = gameOverBackground.color;

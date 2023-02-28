@@ -1,21 +1,27 @@
-﻿using System.Collections;
+﻿using PathFollower;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    /*public EnemyMoveBase spawnedEnemyMoveBehaviour;*/
-    public IEnumerator Spawn(string enemyKeyword, int spawnNumber, float interval, Vector3 spawnPlayfieldPos, Property enemyProperty)
+    public IEnumerator Spawn(EnemySpawn _enemySpawn)
     {
-        for(int i=0; i<spawnNumber; i++)
-        { 
-            EnemyBase eb = PoolHandler.instance.RequestObject(enemyKeyword, false, spawnPlayfieldPos).GetComponent<EnemyBase>();
-            eb.enemyProperty = enemyProperty;
-            eb.Reset();
+        Vector3 randomizedSpawnPosition;
+
+        for (int i = 0; i < _enemySpawn.spawnNumber; i++)
+        {
+            randomizedSpawnPosition.x = Random.Range(_enemySpawn.minSpawnPosition.x, _enemySpawn.maxSpawnPosition.x);
+            randomizedSpawnPosition.y = Random.Range(_enemySpawn.minSpawnPosition.y, _enemySpawn.maxSpawnPosition.y);
+            randomizedSpawnPosition.z = Random.Range(_enemySpawn.minSpawnPosition.z, _enemySpawn.maxSpawnPosition.z);
+
+            EnemyBase eb = PoolHandler.instance.RequestObject(StageManager.Instance.enemyLibrary.EnemyList[_enemySpawn.enemyID], false, randomizedSpawnPosition).GetComponent<EnemyBase>();
+            eb.Begin();
+            //eb.Reset();
             eb.gameObject.SetActive(true);
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSeconds(_enemySpawn.spawnInterval);
         }
-        gameObject.SetActive(false);
+
         yield break;
-     }
+    }
 }
